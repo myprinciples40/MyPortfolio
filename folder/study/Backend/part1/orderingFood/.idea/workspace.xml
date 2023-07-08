@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d96de77c-faad-4779-be90-8817bb566505" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../gradeCalculator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gradeCalculator/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradeCalculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gradeCalculator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gradeCalculator/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../gradeCalculator/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jdbc-practice/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jdbc-practice/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../jdbc-practice/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jdbc-practice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../jdbc-practice/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T131406.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T131425.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T131500.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T131516.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T131533.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T131537.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T160427.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T160439.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T160501.500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T162741.500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T162847.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T163159.404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T163221.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T163443.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T163454.500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T163816.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/2023-06-24T163828.200.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/http-client.cookies" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/httpRequests/http-requests-log.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/CalculatorGenericServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/CalculatorHttpServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/CalculatorServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/WebApplicationServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/domain/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/domain/EnumArithmeticOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/domain/PositiveNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/tobe/AdditionOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/tobe/ArithmeticOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/tobe/DivisionOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/tobe/MultiplicationOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/src/main/java/org/example/calculator/tobe/SubtractionOperator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc-practice1/test.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/main/java/org/example/PasswordGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/main/java/org/example/PasswordGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/main/java/org/example/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/main/java/org/example/PasswordValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/main/java/org/example/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/main/java/org/example/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/CorretedFixedPasswordGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/CorretedFixedPasswordGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/PasswordValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/PasswordValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/WrongFixedPasswordGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oop-practice/src/test/java/org/example/WrongFixedPasswordGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Cooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Cooking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/CookTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CookingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/CookingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/CustomerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/CustomerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/MenuItemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/MenuItemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/MenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/MenuTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectId" id="2RUFe0FRmxZUigmozSO4ivihX5u" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/mypri/Documents/gitlocal/folder/study/Backend/part1/orderingFood",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.CustomerTest">
+    <configuration name="CookTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orderingFood.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CookTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CookingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orderingFood.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CookingTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orderingFood.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CustomerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerTest.orderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orderingFood.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CustomerTest" />
+      <option name="METHOD_NAME" value="orderTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MenuTest.chooseTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orderingFood.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.MenuTest" />
+      <option name="METHOD_NAME" value="chooseTest2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CustomerTest" />
+        <item itemvalue="JUnit.CookTest" />
+        <item itemvalue="JUnit.CookingTest" />
+        <item itemvalue="JUnit.CustomerTest.orderTest" />
+        <item itemvalue="JUnit.MenuTest.chooseTest2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d96de77c-faad-4779-be90-8817bb566505" name="Changes" comment="" />
+      <created>1687296844895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687296844895</updated>
+      <workItem from="1687296845962" duration="1450000" />
+      <workItem from="1687298309523" duration="3650000" />
+      <workItem from="1687349465217" duration="629000" />
+      <workItem from="1688219211826" duration="811000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

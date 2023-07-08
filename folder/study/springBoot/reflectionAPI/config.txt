@@ -1,0 +1,3 @@
+car=com.fastcampus.reflectionapi.di1.SportsCar
+engine=com.fastcampus.reflectionapi.di1.TurboEngine
+door=com.fastcampus.reflectionapi.di1.Door

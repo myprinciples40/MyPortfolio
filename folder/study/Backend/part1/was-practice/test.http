@@ -1,0 +1,7 @@
+// 인텔리j에서 제공하는 HTTP TOOl
+// GET /calculate?operand1=11&operator=-&operand2=55
+// / -(encoding)-> %2F
+GET http://localhost:8080/calculate?operand1=2&operator=-&operand2=1
+
+###
+GET http://localhost:8080/calculate?operand1=4&operator=%2F&operand2=2

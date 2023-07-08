@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Data Source
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+    // JDBC
+    implementation 'org.springframework:spring-jdbc:5.3.22'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // For readability
+    implementation 'org.assertj:assertj-core:3.22.0'
+    // Database
+    implementation 'com.h2database:h2:2.1.214'
+}
+
+test {
+    useJUnitPlatform()
+}
