@@ -1,6 +1,6 @@
-<Project Folder>
+# Project Folder
 
--Personal project
--Course Projects
--Team project
+* Personal project
+* Course Projects
+* Team project
 
