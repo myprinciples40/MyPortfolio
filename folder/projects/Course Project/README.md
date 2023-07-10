@@ -10,9 +10,9 @@
   * Store domain data in DB
   * Provide data via JSON API 
   * Provide services to users on a web screen + Design elements
-    1. bulletin board page
-    2. post page
-    3. login page
+    - bulletin board page
+    - post page
+    - login page
   * Validation of proper input and output data
   * Authentication features
   * Selection of tools to help with productivity
