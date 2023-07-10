@@ -1,14 +1,9 @@
-<Bulletin Board Service>
-
-/**
+# Bulletin Board Service
  * Purpose: Develop a bulletin board service to address customer needs and issues
  * Features: 1. Board Page / 2. Post Page / 3. Login Page / 4. Authentication 
- *
  * Author: Jinhwan Kim (Jin)
  * Date created: 2023-07-10
  * Modification Date:
- */
-
 
 ## What 
   * Design bulletin board and comment domains
