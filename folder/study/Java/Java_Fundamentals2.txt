@@ -1,0 +1,470 @@
+<Java Foundation> 
+*2 Relationships of Classes - 1. Inheritance / 2. Containment
+*2.6.4Inheritance 
+-Creating a new class from an existing class (reuse of code)
+-Relationship between two classes as parent and child (class child class extends parent class {})
+-The child inherits all the members of the ancestor (except the constructor and initialization block).
+-The child cannot have fewer members than the ancestor. (equal to or greater than)
+-Changes to the child do not affect the ancestor.
+
+*2.6.5 Composite Relationship (composite)
+-Declaring a reference variable as a member of a class.
+-Create smaller classes and combine them to create a class.
+-Determining relationships between classes
+	1) Inheritance: A is B (is-a) - Use only when necessary.
+	  (A circle is a dot)
+	2) Containment: A has B. (has-a) - used 90% of the time.
+	  (The circle has a dot - in this case, inclusion is appropriate)
+
+
+*2.6.6Single Inheritance
+-Java only allows single inheritance (but interfaces and C++ allow multiple inheritance).
+-Only one class with the highest weight should have an inheritance relationship, and the rest should have an inclusion relationship. 
+-Object class - the top ancestor of all classes
+	1) Classes with no ancestors automatically inherit from class Object. 
+	2) All classes inherit the 11 methods defined in class Object. (Chapter 9) 
+	3)Notify(), wait(), etc. are methods related to threads. 
+		(a)public String toString() : Returns the object's own information as a string
+		(b)public boolean equlas(Object obj) : Compares the object itself and object obj to see if they 		  are the same object (true if they are)
+		(c)public int hashCode(): returns the hashcode of the object itself
+		(d) public Class getClass() : Returns a Class instance containing the object's class information
+		(e)protected Object clone(): returns a copy of this object
+		(f)protected void finalize() : automatically called by Garbage Collector(G.C) when the object is 		  destroyed (rarely used X)
+		(g)public void notify() : Wakes up one thread waiting to use the object itself.
+		(h)public void notifyAll() : Wakes up all threads waiting to use the object itself.
+		(i) public void wait(): causes the current thread to wait indefinitely until another thread calls 		  notify() or notifyAll().
+		   public void wait(long timeout) : wait for the specified amount of time (timeout)
+		   public void wait(long timeout, int nanos) : wait for the specified time (timeout, nanos).
+		(timeout is thousandths of a second, nanos is 10^9 of a second)
+
+
+*2.6.7Overriding
+-Changing an inherited ancestor's method to make it your own (you can't change the declaration - only the contents of the implementation {})
+	MyPoint3 p = new MyPoint3(3, 5);
+	System.out.println(p.toString()); 
+	System.out.println(p); //same result as above	
+-3 conditions for overriding
+	1) The declaration (return type, method name, parameter list) must match the method of the ancestor class.
+	2) The access controller cannot be changed to a narrower scope than the method of the ancestor class. - public > protected > default > private
+	3) You can't declare more exceptions than methods in the ancestor class.
+-Overloading vs Overriding
+	1) Overloading: Defining a new method that doesn't already exist.
+	2) Overriding: Changing the contents of an inherited method (change, modify)
+
+
+*2.6.8Reference variable super
+-A reference variable that points to the object itself. Exists only in instance methods (constructors).
+-Used to distinguish members of an ancestor from its own members (similar to this (used to distinguish lv from iv))
+(The ancestor's constructor super() and the reference variable super are completely different things).
+*2.6.8super() - ancestor constructor
+-Used to call the ancestor's constructor
+-Ancestor members are initialized by calling the ancestor's constructor (constructor, initialization block is inherited x)
+-Must call the constructor on the first line of the constructor (very important!!!)
+-otherwise the compiler will automatically insert super(); in the first line of the constructor
+
+
+*2.6.9 package
+-A bundle of classes that are related to each other
+-Classes are class files (*.class), packages are folders. Subpackages are subfolders
+-The full name of the class contains the package (java.lang.String)
+-rt.jar is a compressed file of classes (located in JDK installation path\jre\lib) - Starting with Java9, rt.jar disappears and the concept of module is used.
+The -jar file is a compressed file of class files, just like a zip file.
+-Package declarations
+	1) A package is declared only once, in the first sentence of the source file.
+	2) All classes in the same source file belong to the same package.
+	3) If there is no package declaration, they will belong to an unnamed package.
+-bin folder: Where compiled class files (*.class) are located.
+The -src folder: Where the source files (*.java) are located.
+-classpath
+	1) Path that indicates the location of the class file (*.class)
+	2) Managed as an environment variable (OS) classpath, using ';' as a separator between paths.
+	3) Register the root of the package in classpath (environment variable)
+		ex)C:\>set classpath=C:\java\workspace\ch07\bin;c:\jdk1.8\work\util.jar
+
+
+*2.7.1import statement
+-Allows you to omit the package name when using a class.
+-Tells the compiler which package the class belongs to (Eclipse shortcut: Ctrl + Shift + O).
+-Classes in the java.lang package can be used without importing. - String, Object, System, Thread...
+The -import statement can be declared as follows 
+	import packageName.className; 
+	import package name.*; //all classes
+The -import statement is declared between the package statement and the class declaration.
+The -import statement is processed at compile time, so it doesn't affect the performance of your program.
+-The following code on the left and right are semantically different.
+	import java.util.*; //all classes | import java.*; //all classes in the java package (not including the package)
+	import java.text.*;
+-When importing two packages that contain classes with the same name, you must prefix the class with the package name. 
+-static import statement
+	1) It allows you to omit the class name when using the static member.
+		import static java.lang.Integer.*;
+		import static java.lang.Math.*;
+		import static java.lang.System.out;
+
+		class Ex7_6 {
+			public static void main(String[] args) {
+				// System.out.println(Math.random());
+				out.println(random());
+				// System.out.println("Math.PI :" + Math.PI);
+				out.println("Math.PI :" + PI);
+			}
+		}
+
+
+*2.7.2Controller (modifier)
+-Gives additional meaning to a class and its members (member variables, methods)
+	1)Access controllers - public, protected, (default), private
+	2)Others - static, final, abstract, native, transient, synchronized, volatile, strictfp
+-Multiple controllers can be used on a single target (only one access controller can be used)
+	1)public static final int WIDTH = 200;
+-static
+	1)Member variables
+		-This will be a class variable common to all instances.
+		-Class variables can be used without creating an instance.
+		-They are created when the class is loaded into memory.
+	2) Methods
+		-A method is a static method that can be called without creating an instance.
+		-Instance members are not directly available inside static methods. (Important!!!)
+-final 
+	1) Classes
+		-A class that cannot be changed and cannot be extended.
+		-So a class specified as final cannot be the ancestor of another class.
+	2) Methods
+		-Methods that cannot be changed, and methods designated as final cannot be overridden by overriding.
+	3) Member variables/local variables
+		-If a variable is prefixed with final, it becomes a constant whose value cannot be changed.
+-abstract
+	1) Class - means that abstract methods are declared within the class.
+	2) Method - indicates that the method is an abstract method with only a declaration and no implementation.
+-Access modifier access scope
+	1) private - only accessible within the same class.
+	2) default - accessible only within the same package.
+	3) protected - accessible within the same package and from descendant classes in other packages
+	4) public - no access restrictions at all.
+-public > protected > (default) > private
+
+
+*2.7.4Encapsulation and access controllers
+-Reasons to use access controllers
+	1) To protect data from the outside world (prevent direct access from the outside world).
+	2) To hide parts that are only used internally and are unnecessary to the outside world.
+
+
+*2.7.5Polymorphism - Most important!!!!!
+-The ability to have multiple forms
+-dealing with child type objects by ancestor type reference variables (you can't point to an object of an ancestor type by a reference variable of a child type.)
+	Tv t = new SmartTv(); // OK
+	SmartTv s = new Tv(); // ERROR
+-Difference when the reference variable is of an ancestor type versus a child type - Different number of members that can be used as reference variables. (Clicker change)
+
+
+*2.7.6 Casting reference variables (very important!!!)
+-Why use: To control the number of members that can be used by changing the reference variable (clicker)!
+-Reference variables in ancestor and child relationships can be cast to each other.
+(the object remains the same, the value remains the same, it's just a matter of matching the type to match the address value)
+	FireEngine f = new FireEngine();
+	Car c = (Car)f; // OK, cast to the ancestor Car type (can be omitted)
+	FireEngine f2 = (FireEngine)c; // OK. Cast to the descendant FireEngine type (can't omit)
+	Ambulance a = (Ambulance)f; // ERROR. Casting between non-inherited classes is not allowed
+-When casting, it is important to know what the actual instance (object) is!
+-Calling a method without creating an instance throws a NullPointerException!
+-If you create an ancestor type and cast it to a child type and try to access a method of the child type, 
+compilation is OK, but a cast execution error occurs at runtime. (java.lang.ClassCastException)
+-Descendant(5) -> Ancestor(4) reduction: always safe (and therefore omitable)
+-Ancestor(4) -> Descendant(5) increment: Safe X (which can't be omitted, because trying to write more than you have will result in an error)
+
+
+*2.7.7instanceof operators (very important!!!)
+The -intanceof operator: used to check if a reference variable is castable. Returns true if it is possible (highest ancestor Object)
+-Must be checked with instanceof before casting. 
+	1) Check if casting is possible
+	2) Cast
+		void doWork(Car c) {
+			if(c instanceof FireEngine) { // 1) Check if casting is possible
+				FireEngine fe = (FireEngine)c; // 2) Cast
+				fe.water();
+			}
+		}
+-The reason for casting is that you want to use all of the original functionality of the instance.
+-We can't call water() with c, a remote control of type Car, so we convert the remote control to type FireEngine and call water().
+	FireEngine fe = new FireEngine();
+	System.out.println(fe instanceof Object); // true
+	System.out.println(fe instanceof Car); // true
+	System.out.println(fe instanceof FireEngine); // true
+
+
+*2.7.8Polymorphism of parameters & 2.7.9Handling multiple types of objects as arrays (very important!!!)
+-A reference type parameter can be passed to a method call, either an instance of its own type or an instance of a descendant type. (overloading)
+-An array of ancestor types can hold objects of descendants.
+-Advantages: 
+	1) Polymorphic parameters.
+		void buy (Tv t) {		      --->    void buy (Product P) {
+			money -= t.price;		              money -= t.price;
+			bonusPoint += t.bonusPoint;	  	      bonusPoint += t.bonusPoint;
+		}					      }
+
+		Buyer b = new Buyer();
+		Product p = new Tv1();  --->  b.buy(new Tv1()); (same the bottom two lines on the left)
+		b.buy(p);
+
+	2)Handling multiple types of objects in one array
+		Product cart[] = new Product[3];
+		p[0] = new Tv();
+		p[1] = new Computer();
+		p[2] = new Audio();
+
+		for(int i = 0; i < cart.length; i++) {
+			if (cart[i] == null) break;
+			sum += cart[i].price;
+			itemList += cart[i].toString() + ", ";
+		}	
+	-This is possible because of the Vector class (Object[] can store any kind of object)
+
+
+*2.8.1Abstract Classes
+-An unfinished blueprint. A class with unfinished methods.
+-Intended to help you write other classes. Cannot create instances
+	abstract class Player {
+		abstract void play(int pos); //abstract method (unfinished method with no body {})
+		abstract void stop();
+	}
+	Player player = new Player(); //error
+-Abstract methods must be completed before instances can be created through inheritance
+	1) Child completes body {} through inheritance
+	2) Create and use the child object
+		class AudioPlayer extends Player {
+			void play(int pos) {/* content omitted */} //implement abstract method
+			void stop() {/* omit content */} //implement abstract method
+		}
+		AudioPlayer ap = new AudioPlayer(); //Create instance ok
+-Abstract classes must also have a constructor.
+-If it is required, but you expect different children to be implemented differently
+	1) Methods that do not have a body in another class that implements the child must be labeled abstract. 
+-Methods can be called abstract because they are callable (only the declaration is needed to call them)
+	void play() { // Instance method (ok to call after object creation)
+		play(currentPos); // Abstract method can be used. 
+	}
+-Create an abstract class that can be used by multiple classes, either directly or by extracting common parts of existing classes.
+	//Unit[] group = {new Marine(), new Tank(), new Dropship()} //Create + initialize (like this)
+	Unit[] group = new Unit[3]; //Arrange objects: enclose reference variables
+	//group is of type Unit[], group[0], group[1], group[2] are of type Unit
+	group[0] = new Marine(); 
+	group[1] = new Tank();
+	group[2] = new Dropship();
+
+	for (int i; i < group.length; i++) {
+		group[i].move(100, 200); 
+	}
+
+-Writing an abstract class
+	1) Easy to manage
+	2) Easier to create blueprints, eliminate duplication
+	3) Abstracted code is more flexible than concrete code (easier to change)
+	GregorianCalendar cal = new GregorianCalendar(); //Concrete
+	Calender cal = Calender.getInstance(); //abstract- returns a Calender descendant object
+
+
+*2.8.3Interface - the same concept as encapsulation (ivData protection)
+-In conclusion, a set of abstract methods (core, essence!!! memorize!!!)
+-A schematic, a shell with nothing implemented (all members are public)
+-interfaces also include static methods, constants, and default methods (side note - since java jdk 1.8)
+-An abstract class can have variables such as iv and cv, but an interface cannot have iv, constructor, or instance methods. (Constants are allowed)
+-Implementing an interface (creating an abstract method body {} - completing an unfinished blueprint) is exactly the same as completing an abstract class (only the keywords are different).
+-The abstract class implements the body by inheriting (extends), and the interface implements the body by using implements.
+-Ancestor interface constants: public static final keyword can always be omitted without exception.
+-Ancestor interface methods: public abstract can be omitted
+-Interface ancestors can only be interfaces (Object is not the highest ancestor)
+-Multiple inheritance is possible (abstract methods don't mind conflicting): If the declarations are different, it's fine to inherit both, but if the declarations are the same and the contents are different, it can't decide which one to inherit. (However, interfaces are empty shells, so this is not a problem).
+	interface Fightable extends Movable, Attackable{ } //two members
+
+	interface Movable {
+		void move(int x, int y);
+	}
+	interface Attackable {
+		void attck(Unit u);
+	}
+
+-Implementation of an interface: completing the abstract methods (body {}) defined in the interface (completing the unfinished blueprint).
+-If you only implement part of it, you must prefix the class with abstract (same as abstraction).
+-What abstract classes and interfaces have in common: They have abstract methods.(Unfinished blueprint)
+-The difference between an abstract class and an interface is: Interfaces cannot have IVs, constructors, and instance methods.
+(except for static, constant, and default methods)
+
+
+*2.8.5Polymorphism with interfaces (very important!!!)
+-An interface is also a parent of an implementation class.
+-Parameters of an interface type can only be objects of the class that implements the interface!!!
+
+	interface Fightable {
+		void move();
+		void attack(Fightable f); // Fightable Only instances of classes that implement the interface
+	}
+	
+	class Fighter extends Unit implements Fightable {
+		public void move(int x, int y) { /* Skip content */ };
+		public void attack(Fightable f) { /* Skip content */ };
+	}
+	Unit u = new Fighter();
+	Fightable f = new Fighter();
+	f.move(100, 200);
+	f.attack(new Fighter());
+
+-인터페이스를 메서드의 리턴타입으로 지정할 수 있다.
+-Fightable인터페이스를 구현한 클래스의 인스턴스를 반환 (애매하게 쓰기 위해서 - 다형성과 추상화를 사용해서)
+	Fightable method() { //반환타입이 일치하면 된다.
+		Fighter f = new Fighter(); --> //return new Fighter(); // 왼쪽과 오른쪽 문장은 같다.
+		return f; 
+	}
+	Fightable f = method(); //new Fighter();
+
+-All methods of an interface have a public abstract, without exception (although it is possible to omit them).
+-Therefore, you must attach public to the methods of the class you implement (it's an error to omit it).
+-The reason for this is that, according to the overriding rules, an accessor must not have a narrower scope than its ancestor (public).
+-2.8.5Polymorphism with interfaces4-Example 4 to be seen many times
+
+
+*2.8.7Advantages of interfaces
+-2.8.6 Check out the examples
+Act as a "go-between" to help two things (objects) "connect, talk, and communicate".
+-Allows you to separate the declaration (design-shell) from the implementation (kernel).
+	1) Reduce development time. 
+	2) Allows for a flexible design that favors change. (Loosely coupled - less dependent).
+	3) Allows for standardization.
+	4) It can provide relationships between unrelated classes. 
+	void repair(Repairable r) { //Repairable only for classes that implement Repairable (SCV, Tank, Dropship)
+		if (r instanceof Unit) {
+			Unit u = (Unit)r;
+			while(u.hitPoint != u.MAX_UP) {
+				u.hitPoint++; //Increases the HP of a unit.
+			}
+		}
+	}
+
+
+*2.8.8Default and static methods
+-Possibility to add a default method, static, to an interface (since JDK1.8).
+-Difficult to add a new method (abstract method) to an interface (because you have to modify everything that applies to it later).
+	Solution => default method
+-The default method is an instance method, which violates the interface principle, but is possible as an exception
+	interface MyInterface {
+		void method();
+		default void newMethod(){} //Existing abstract method void newMethod();
+	}
+-Solution when the default method conflicts with an existing method - which is eventually solved by overriding it directly
+	1) Conflicts between default methods of different interfaces - you need to override the default method in the class that implements the interface. 
+	2) Conflict between the default method and the method of the ancestor class - the method of the ancestor class is inherited first, and the default method is ignored.
+
+
+*2.8.9Controllers and accessibility of inner classes
+-Classes within classes (used because if they are only used inside, there is no need to create them outside)
+-An inner class can access the IV of an outer class without creating an object.
+-Advantages of inner classes
+	1) You can easily access the members of an external class from an internal class. 
+	2) Reduce code complexity (encapsulation)
+-Types and features of inner classes (The types and scope of inner classes are the same as variables - compare with the code below) 
+	1)iv = instance inner class (same concept)
+	2)cv = static inner class
+	3)lv = local internal class 
+	4)Anonymous class - a nameless class that simultaneously declares a class and creates an object 
+	  (one-time use)
+		class Outer { //Class Area
+			class InstanceInner {} //1)
+			static class StaticInner {} //2)
+			
+			void myMethod() { //Method Area
+				class LocalInner {} //3)
+			}
+		}
+-Controllers for inner classes are the same as those available for variables 
+  (public, protected, default, private / (Class)public, default)
+
+-You can't declare static variables in instance inner classes!!!
+(You can't declare static variables in local inner classes either.) - Constants are allowed.
+	Example) final static int CONST = 100; //Instance inner class and region inner class
+- Only static classes can define static members. (because CVs can be used without creating an object)
+
+-Instance members are directly accessible to each other / static members are also directly accessible to each other
+-A static inner class cannot directly access instance members of an outer class!!! (because iv requires object creation)
+(instance members can access static members, but static members cannot access instance members directly) 
+	Static void staticMethod() { //static methods cannot access instance members directly
+		InstanceInner obj1 = new InstanceInner(); //error (not possible)
+		StaticInner obj2 = new StaticInner(); //Possible
+	}
+
+	void instanceMethod() { //Instance methods can access both instance members and static members
+		InstanceInner obj1 = new InstanceInner(); //Yes
+		StaticInner obj2 = new StaticInner(); //Yes
+		LocalInner lv = new LocalInner(); //Error (local inner classes are not accessible from outside!)
+	}
+-When creating from another method, the local inner class must first create the outer class before it can be created (not very important x)
+
+-Static constants of local inner classes can only be used inside methods (not directly called from the main method).
+	Example) System.out.println(LocalInner.CONST); //error
+	   System.out.println(InstanceInner.CONST); //OK
+ 	   System.out.println(StaticInner.CONST); //OK
+-Local inner classes are not externally accessible.
+-Private members of the outer class can access the inner class. (This is the same as -IV because they are in the same class).
+-However, the static class cannot access the instance members of the outer class.
+
+-Objects in the inner class can survive longer than local variables (LVs) in the outer class.
+-Only variables (constants) with final can be accessed from the inner class to the outer class's local variables. 
+-As of JDK1.8, final can be omitted, and variables whose values do not change are considered constants.
+(Therefore, a variable without final in an outer class can be accessed from an inner class if its value does not change.)
+-However, it's a good idea to use final for constants!
+-Constant pool - There is a pool for collecting, storing, and managing constants.
+
+-You must create an instance of the outer class in the main method before you can create an instance of the instance class.
+-However, static variables of the inner class can be used without creating an object.
+-Instances (iv) of the static inner class do not require the outer class to be created first.
+-2.8.9Controllers and accessibility of inner classes See 8, 9
+-2.8.9Controllers and accessibility of inner classes10
+	1) Outer class iv: Outer3.this.value 
+	2) Inner class iv: this.value 
+	3) Local variable lv: value
+		class Ex7_15 {
+			public static void main(String[] args) {
+				Outer2 oc = new Outer2(); //You must first create an instance of the external 								    class before you can use the instance class's
+				Outer2.InstanceInner ii= oc.new InstanceInner(); //Instances can be created
+
+				//Instance member
+				System.out.println("ii.iv : " + ii.iv);
+				//static member (Can be used without an object from an external class)
+				System.out.println("Outer2.StaticInner.cv : " + Outer2.StaticInner.cv);
+			
+				//static Instances of the inner class do not need to create the outer class 					  (Outer2) first.
+				Outer2.StaticInner si = new Outer2.StaticInner();	
+				System.out.println("si.iv : " + si.iv););
+			}
+		}
+
+
+*2.9.1 ANONYMOUS CLASS
+-A one-time class with no name. It is defined and created at the same time
+	new AncestorClass name() {
+		//Declare members
+	}
+	
+	//Example
+	class Ex7_17 {
+		Object iv = new Object() { void method(){} }; //Anonymous class
+		static Object cv = new Object() { void method(){} }; //Anonymous class
+		
+		void myMethod() {
+			Object iv = new Object() { void method(){} }; //Anonymous class
+		}
+	}		
+Or
+	new ImplementationInterface name() {
+		//Declare a member
+	}
+
+	//Example
+	b.addActionListener(new ActionListener() { //Define a class and create an object at the same time
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("ActionEvent occured!!!");
+		}
+	});
+
+
+
+
