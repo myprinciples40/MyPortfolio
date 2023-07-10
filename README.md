@@ -20,6 +20,7 @@
 
   * Project Folder
     - Personal project
+      * [ ] Bulletin board service
     - Course Projects
     - Team project
     
