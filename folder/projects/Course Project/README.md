@@ -9,7 +9,8 @@
  * Modification Date:
  */
 
-# What 
+
+## What 
   * Design bulletin board and comment domains
   * Store domain data in DB
   * Provide data via JSON API 
@@ -26,15 +27,15 @@
   * Deployment on the cloud server (Heroku)
   * Writing a GitHub release
 
-# How
+## How
   * Problem identification -> Requirements -> Feature derivation -> Planning of implementation plan 
     -> Development plan -> Execution
 
-# Why
+## Why
   * To utilise and practice the skills I've learned
   * To address customer needs and issues
 
-* Techniques for anticipating selections from detailed features
+## Techniques for anticipating selections from detailed features
   * Select from Java + Spring Boot base
   * Providing web services -> Srping Web
   * Domain design and DB storage -> Spring Data JPA, H2 Database, MySQL Driver
