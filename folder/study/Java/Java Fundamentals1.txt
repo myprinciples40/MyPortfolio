@@ -1,0 +1,307 @@
+<Java Foundation> 
+*Getting Command Line Input
+1.View source file in Eclipse (path): Alt + Enter
+2.The class file is located in the bin folder above where the source file is located.
+3.Open a Cmd window> java <classname(Ex5_7)> abc 123 "Hello World"
+4.See what's inside the file: again in cmd, go to the src folder and type> type Ex5_1.java
+
+
+*Running from the Java File CMD
+1.File Pane-Options-View-Hide file extensions of known file types-ClickDelete-Apply to all folders-Confirm
+
+2.In Cmd
+C:\jdk11\work>javac Hello.java (compile)
+C:\jdk11\work>dir
+C:\jdk11\work>type Hello.class (binary file)
+C:\jdk11\work>type Hello.java (text file) 
+Now that it's compiled
+C:\jdk11\work>java Hello (should run fine without the extension)
+*javac.exe - Java compiler. Translates human written sentences into machine language - converts source files (*.java) to class files (*.class).
+*java.exe- Java interpreter. Executes Java programs (class files).
+*Class - a Java program unit. Java program consists of classes
+*Build - the whole process of creating a program from a source file (*.java)
+
+
+*Use %n rather than /n as a newline character - this may vary between OS.
+
+
+*1.9.1How to convert between types (very important!!!) - Memorize!!!
+	1. Conversion between letters and numbers
+		3 -> '3' : 3 + '0' 
+		'3' -> 3 : '3' - '0'  
+	2. Convert to string (both plus empty string)
+		3 -> "3" : 3 + "" 
+		"3" -> '3' : "3" + "" 
+	3. Convert strings to numbers
+		"3" -> 3 : Integer.parseInt("3")
+		"3.4" -> 3.4 : Integer.parseDouble("3.4")
+		"3" -> '3' : "3".charAt(0)
+
+*2.1.6 Automatic casting only works if you can fit a small value into a large bowl. 
+-If you try to put a large value into a small bowl, you will lose value and have to cast it manually.
+
+*2.1.7Arithmetic conversions1 (very important!!!) - memorize!!!
+-Matching the types of operands before the operation. (Two rules)
+	1. match the types of both operands equally (match with the greater type)
+	2. if an operand has a type less than int, it is converted to int.
+
+*2.2.6 Constraints on the -switch statement
+The value of the conditional expression in a -switch statement must be an integer or a string. 
+The value of the -case statement can only be integers, constants (including characters), or strings, 
+and must not be duplicated. (Variables and real numbers are not allowed - error)
+
+
+*2.4.3OOP: Object-Oriented Programming
+-Software crisis in the early 80s - unable to keep up with rapid change
+Object-oriented languages were introduced as a solution (procedural -> object-oriented)
+-Highly reusable and maintainable code, eliminates duplicate code
+-Object-oriented language = programming language + object-oriented concepts (rules)	
+	1)Encapsulation
+	2)Inheritance
+	3)Abstraction
+	4)Polymorphism
+
+
+*2.4.4 Classes and Objects
+-The definition of a class: A class is a definition of an object.
+-The purpose of a class: A class is used to create an object.
+-Definition of an object: a collection of instance variables (IVs).
+-Purpose of an object: to use the properties and functions of an object. 
+-Components of an object: properties (variables) + functions (methods)
+
+-Object and instance.
+	1)Object: A generic term representing all instances (a bundle of IVs (instance variables)).
+	2) Instance: an object created from a specific class (e.g. TvInstance)
+
+
+*2.4.5Cautions for creating multiple classes in one source file
+	1) More than one public class should not exist in a single source file.
+	2) The name of the source file must match the name of the public class. 
+	3) The name of the source file must match the name of the public class.
+
+
+*2.4.6Creation and Use of Objects (Creating a Class (Blueprint))
+-Create an object
+	class name variable name; //Declare a reference variable to refer to an object of the class
+	VariableName = new ClassName(); //Create an object of the class and store the address of the object 
+					  in the reference variable.
+
+	Tv = t; //Declare a reference variable of type t of class Tv
+	t = new Tv(); //Try to create a Tv instance and store the address of the created Tv instance in t.
+-Using objects
+	t.channel = 7;
+	t.channelDown();
+	System.out.println("The current channel is " + t.channel + ".");
+-Only one value can be stored in a variable.
+	1) Multiple reference variables pointing to a single instance (possible)
+	2) Multiple instances can be pointed to by a single reference variable (not possible).
+
+
+*2.4.7Array of objects
+-Object array == reference variable array
+	Tv[] tvArr = new Tv[3]; //Array of reference variables of type Tv with length 3
+	//Create an object and store it in each element of the array (3 Tv type reference variables)
+	tvArr[0] = new Tv();
+	tvArr[1] = new Tv();
+	tvArr[2] = new Tv();
+	
+	//Code like the above
+	Tv[] tvArr = {new Tv(), new Tv(), new Tv()}
+
+
+*2.4.8Definition of a class
+-Class = Data + Function (Struct (a collection of different types that relate to each other) + Function)
+	1) Blueprint
+	2) Data + Function
+	3)User-defined type (create your own type and use it)
+-Variable: A place to store one piece of data
+-Array: A space to store multiple data of the same kind as one
+-Structure: A place to store multiple pieces of data related to each other (type relationship X) as one.
+-Classes: a combination of data and functions (structure + function)
+
+
+*2.4.9 Types of Variables Depending on Declaration Position
+-area
+	1)Class area: 
+		-Instance variable iv (instance variable): created when an instance is created.
+		-Class variable CV (class variable): Created when the class is put into memory 
+		(object creation is automatic).
+	2)Method area: 
+		-lv(local variable): Created when a variable declaration is performed.
+
+	class Variables {
+		int iv; //Instance variable iv
+		static cv; //Class variable cv (static variable, Shared Variables)
+		
+		void method () {
+			int lv = 0; //Local variable LV (must be initialized)
+		}
+	}
+-An object is a collection of ivariables.
+	
+
+*2.5.1Class Variables and Instance Variables
+-iv: individual properties (e.g., a pattern on a card, a number)
+-cv: static for common attributes. (e.g. width, height of a card)
+	1) When changing the value, make sure to write it clearly (to the right).
+		c.width = 50; ---> Card.width = 50;
+		c.height = 80; ---> Card.height = 80;
+-flash watch video
+
+
+*2.5.2What is a Method?
+-Sentences strung together: declaration + implementation
+	return type method name (type variable name, type variable name, ...) { <--- declaration
+		//code to be executed when the method is called <--- implementation
+	}
+
+	int add(int a, int b) {
+		int result = a + b;
+		return result; //Return the result to the called method.
+	}
+-Sentences named as units of work (to eliminate duplication)
+-Takes in a value (input), processes it, and returns a result (output).
+-Advantages of methods
+	1) Reduce code duplication.
+	2) Easy to manage code
+	3) Code can be reused.
+	4) The code is concise and easy to understand.
+-Local variable lv: Variables declared inside a method.
+-Does not overlap with lv used in other methods, even if they have the same name. (OK)
+
+
+*2.5.3 Calling a method
+-After calling a method, return its value back to where it was called.
+	methodname(value1, value2, ...); //how to call the method
+	
+	print99danAll(); //void calling print99danAll()
+	int result = add(3, 5); //Call int add(int x, int y), save result to result
+-Method execution flow
+	MyMath mm =new MyMath(); //First create an instance.	
+	long value = mm.add(1L, 2L); //Call the method.
+	long add(long a, long b) {
+		long result = a + b;
+		return result;
+	}
+
+	1) Call the method add in the main method. The arguments 1L and 2L are copied 
+	(assigned) to the parameters a,b of the method add.
+	2) The statements in the parentheses {} of the method add are executed in order.
+	3) When all statements in the method add are executed or a return statement is encountered, 
+	  it returns to the called method (main method) and executes the subsequent statements.
+
+
+*2.5.4return
+-Exit the executing method and return to where it was called.
+	void printGugudan(int dan) {
+		if (!(2 <= dan && dan <= 9))
+		//If the value of dan is not between 2 and 9, it will simply return to where it was called.
+			return; 
+
+		for (int i = 1; i <= 9; i++) {
+			System.out.printf("%d * %d = %d%n", dan, i, dan * i);
+		}
+		return; //Can be omitted because the return type is void. The compiler automatically adds
+	}
+
+-Return statement required if return type is not void
+-If there is a conditional expression, a return statement must be attached in all cases.
+-When the return type is not void, the type of the declaration must match the type of the return value. 
+(char, byte, short, etc. can be automatically converted to int)
+
+
+*2.5.5CALL STACK - VERY IMPORTANT!!!(what happens in memory) - see screenshot!!!
+-stack: a box with a closed bottom. It is stacked on top.
+-The space where the memory needed to perform the method is provided.
+-Memory allocated on the call stack when the method is called, released when it exits
+-If a method below calls a method above, only the top method is executed while the rest wait.
+
+
+*2.5.6Default type parameter - very important!!!(to be drawn!!!!) - see screenshot!!!
+-Basic parameter - can only read the value of a variable. (read only: change X)
+-Reference type parameter - allows you to read and change the value of the variable. (read & write)
+-Flash movie (flash folder)
+	-Primitive parameter example: PrimitiveParam.exe
+	-Reference type parameter Example: ReferenceParam.exe
+*2.5.7Reference type parameters - VERY IMPORTANT!!!(to be drawn!!!!)
+
+
+*2.5.8Static method vs instance method - (difference between using IV or not)Very important!!!
+- Object: A bunch of variables (iv).
+-Instance method
+	1)After creating an instance, call 'referencevariable.methodname()' (to create and use an object)
+	2)Methods that perform operations related to the instance members (iv,im)
+	3) Instance variable (iv) can be used within the method
+	4)Can be called after creating an object
+-static method (class method) - Appends static to a common property among properties (member variables).
+(Add static to methods that do not use instance members (iv,im)).
+	1)Call with 'classname.methodname()' without creating an object
+	2)Methods that do something unrelated to instance member(iv,im)
+	3)Cannot use instance variable(iv) inside the method. (cannot be called)
+	4)Static methods are always callable, but instance methods cannot be used because there may not be 
+	an object (iv bundle) when called.
+
+		class TestClass2 {
+			int iv; //Instance Variables
+			static int cv; //Class Variables
+			
+			void instanceMethod() { //Instance method (can be called after object creation)
+				System.out.println(iv); //Instance variables are available.
+				System.out.println(cv); //You can use class variables.
+			}
+
+			} static void instanceMethod() { //static method (can always be called without 
+							   creating an object)
+				System.out.println(iv); //Error!!! Instance variables are not available.
+				System.out.println(cv); //Class variables are available.
+			}
+		}
+
+
+*2.5.9Overloading
+-Defining multiple methods with the same name in a class (method name(1) : method(n))
+-There are three conditions for overloading to occur
+	1) Methods must have the same name.
+	2) The number or type of parameters must be different.
+	3) The return type doesn't matter.
+-Correct example of overloading - parameters are different but perform the same semantic function
+
+
+*2.6.1Constructor - Every class must have a default constructor! - If not, compile error occurs
+-Make it a habit to write a default constructor when creating a class! - <classname>() {}
+(very important!!!!!!)
+-"Instance (bundle of objects) initialization method" that is called every time an instance is created.
+-Used for what to do when creating an instance (initialize the IV)
+-3 constructor conditions
+	1) The name must be the same as the class name.
+	2) No return value (no void)
+	3) Every class must have a constructor. - <classname>() {}
+-default constructor - parameterless constructor
+(Only if you don't have any constructors, the compiler will add them automatically).
+
+
+*2.6.2Constructor this() - eliminates duplication of code.
+-used when a constructor calls another constructor of the same class
+-Can only be used on the first line when calling another constructor
+*2.6.2 Reference variable this (Constructor this() and reference variable this are completely different things.)
+-A reference variable that points to the instance itself (the address of the instance is stored).
+-Can be used in instance methods (including constructors)
+-Used to distinguish between local variables (LV) and instance variables (IV).
+-Exists hidden as a local variable in all instance methods. (can be used without declaration)
+
+
+*2.6.3Initialization of variables - Initialization of member variables (summary) - Important!!!
+-Local variables (LV) must be manually initialized before use!!!
+-Member variables (iv, cv) are initialized automatically.
+-There are 3 ways to initialize member variables (iv, cv) (automatic -> simple -> complex)
+	1) Explicit initialization (=) - simple initialization
+	2) Initialization block - complex initialization
+		-Instance (IV) initialization block: {}
+		-Class(cv) initialization block: static {}
+	3) Constructor (instance(iv) initialization) - Complex initialization
+-Initialize reference type variables - null (default) or object address
+-When to initialize class variables (CV): Once when the class is first loaded (when it comes up in memory).
+-Initialize instance variables (IV) when: whenever an instance is created
+-So, the order of initialization is as follows
+	1) CV(Auto) -> CV(Simple) -> CV(Complex) -> IV(Auto) -> IV(Simple) -> IV(Complex)
+
