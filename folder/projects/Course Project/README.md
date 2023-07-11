@@ -5,7 +5,7 @@
  * Modification Date:
 
 ## What 
-  * 1. Bulletin board service
+  * Bulletin board service
   * 
   *  
   * 
