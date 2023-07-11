@@ -127,10 +127,10 @@ Any catchblock in which an exception is declared is exception-handled (the last 
 		} catch (Exception1 e1) {
 			//Include a statement to handle the exception. 
 		} fianlly {
-			//Include statements that should always be performed regardless of whether an exception 			occurs.
+			//Include statements that should always be performed regardless of whether an exception occurs.
 			//finally block should be at the end of the try-catch statement.
 		}
-	-try block has a return statement inside the try block, so the finally block is executed even when leaving 	the try block.
+	-try block has a return statement inside the try block, so the finally block is executed even when leaving the try block.
 
 
 *3.1.6Creating custom exceptions
@@ -190,7 +190,7 @@ This is because two objects with a true result of -equals() must have the same h
 
 		//If you override equals(), you must also override hashCode().
 		//int hash(Object... values) {...} 
-		//The parameter is a variable (Object...), so the number of values specified in the call is not 		fixed.
+		//The parameter is a variable (Object...), so the number of values specified in the call is not fixed.
 		public int hashCode() {		
 			return objects.hash(kind, number);
 		}
