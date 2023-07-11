@@ -1,0 +1,198 @@
+*3.1.1Program errors
+-Compile-time error: Errors that occur when compiling
+-runtime error: an error that occurs during execution (program termination)
+-logical error: behavior not as intended (program termination X)
+
+-2 runtime errors in Java (errors are unavoidable, but let's handle exceptions!)
+	1) Error: A serious error that cannot be corrected by the program code.
+	2) Exception: A somewhat minor error that can be fixed by the program code
+-The role of the Javascript compiler: 1) syntax checking 2) translation 3) optimization
+-Definition and purpose of exception handling
+	1) Definition: writing code that prepares for the occurrence of exceptions that may occur during program execution
+	2)Purpose: To prevent abnormal termination of the program and maintain normal execution.
+-Hierarchy of exception classes (see 3.1.1Program errors3 -Hierarchy of exception classes1,2!!)
+
+			       Object
+				  |
+      	        Throwable (Class.ancestor of all errors)
+				  |
+      Exception(Minor errors)		 Error(Critical errors)
+		    |				  |
+     IOException      RuntimeException 	    ...		 OutOfMemoryError
+
+-Exception class and its descendants: Exceptions caused by external factors such as user error 
+(chechedexception - try-catch required)
+	-IOException (input/output exception)
+	-ClassNotFoundException (class does not exist - *.class)
+-RuntimeException class and its descendants: Exceptions caused by programmer mistakes 
+(unchecked exceptions - choose try-catch)
+	-ArithmeticException (Arithmetic calculation exception: 5/0)
+	-ClassCastException (cast)
+	-NullPointerException (Null Pointer)
+	-IndexOutOfboundsException (Array out of bounds)
+
+
+*3.1.2Exception Handling1-try-catch statement
+-Definition and purpose of exception handling
+	1)Definition: To write code to prepare for the occurrence of exceptions that may occur during program execution.
+	2)Purpose: To prevent abnormal termination of the program and maintain normal execution.
+-{ } cannot be omitted
+-Unlike the if statement, the parenthesis {} cannot be omitted even if there is only one statement contained in the try block or catch block. 
+Flow in a -try-catch statement
+	1) If an exception occurs within the try block
+		a) Check if there is a catch block that matches the exception. 
+		b) If a matching catchblock is found, execute the statements in that catchblock, exit the entire try-catch statement, and continue to the next statement. 
+		  and continue with the next statement. If no matching catchblock is found, the exception is not handled. 
+	2) If no exception is thrown within the try block
+		a) Exit the entire try-catch statement without going through the catchblock and continue execution.
+-If an exception is thrown, look down for a catch block to handle it.
+-If there is no matching catchblock, the exception is not handled.
+Any catchblock in which an exception is declared is exception-handled (the last catchblock) - the greatest ancestor of all exceptions
+
+
+*3.1.3Handling Exceptions-Multiple Catch Blocks
+-When an exception occurs, an object containing the exception information is created as shown below (printStackTrace(), getMessage(), etc.).
+-printStackTrace() - prints the information of the method that was in the Call Stack when the exception occurred and the exception message to the screen.
+-getMessage() - Get the message stored in the instance of the exception class that threw the exception.
+-Generic catchblocks (below)
+	try {
+		...
+	} catch (ExceptionA e) {
+		e.printStackTrace();
+	} catch (ExceptionB e2) {
+		e2.printStackTrace();
+	}
+
+-Multiple catchblocks (below)
+-combines catch blocks with the same content into one (since JDK1.7)
+	try {
+		...
+	} catch (ExceptionA | ExceptionB e) {
+		e.printStackTrace();
+	}
+-Two cautions
+	1) Parent-child relationships should not be used together.
+	try {
+		...
+	} catch (ParentException e) {
+		e.printStackTrace();
+	}
+	2) Only common members of ExceptionA and ExceptionB can be used 
+	  (methodA() declared in ExceptionA cannot be called)
+	try { // If you want to use it, you can use it like this.
+		...
+	} catch (ExceptionA | ExceptionB e) {
+		e.methodA();
+		if (e instanceof ExceptionA) {
+			ExceptionA e1 = (ExceptionA)e; 
+			e1.methodA(); // OK(after casting) Available to call methods declared in ExceptionA
+		} else {
+			...
+		}
+	}
+
+
+*3.1.4 Raising Exceptions
+-To raise an exception 
+	1) Use the operator new to create an object of the exception class you want to raise, and then execute the following code
+		Exception e = new Exception("I threw it on purpose");
+	2) Throw the exception using the keyword throw.
+		throw e;
+-The above two lines can be shortened to a single line, as shown below.
+	throw new Exception("thrown on purpose");
+-There are two types of exceptions
+	1) checked exception: the compiler checks whether the exception should be handled (requires a try-catch). 
+		- Exception class and its descendants		
+		- must be handled because they are caused by user error
+	2) unchecked exception: the compiler does not check whether to handle the exception (try-catch optional) 
+		- Class RuntimeException and its descendants
+		- Optionally handled by programmers		
+
+
+*3.1.5 Declaring exceptions in methods
+-3 ways to handle exceptions
+	1) try-catch statement
+	2) Declaring an exception
+	3) Hide-and-cover (empty catch statement - when processing big data)
+-Notifying the calling party of a possible exception when a method is called
+	void method() throws Exception { //any exception can be thrown
+		//Contents of the method
+	}
+-Distinguish between the keyword throw, which raises an exception, and throws, which is used to declare an exception in a method.
+-3.1.5Declaring an exception in a method4-Watch examples 1 through 7!
+-finallyblock (removes code duplication)
+	-Include code that should be executed regardless of whether an exception is thrown.
+		try {
+			//Include statements that might cause an exception to occur.
+		} catch (Exception1 e1) {
+			//Include a statement to handle the exception. 
+		} fianlly {
+			//Include statements that should always be performed regardless of whether an exception 			occurs.
+			//finally block should be at the end of the try-catch statement.
+		}
+	-try block has a return statement inside the try block, so the finally block is executed even when leaving 	the try block.
+
+
+*3.1.6Creating custom exceptions
+-We can define our own exception classes.
+-Choose ancestor between Exception and RuntimeException
+	class MyException extends Exception {
+		MyException(String msg) { //Constructor that takes a string as a parameter.
+			super(msg); //Call the constructor of the ancestor class Exception.
+		}
+	}
+-Exception re-throwing
+	-Raising an exception again after handling it.
+	-Throwing an exception in both the called method and the called method.
+
+
+*3.1.7Chained exception (chained exception)
+	-One exception can cause another exception to be thrown.
+	-If exception A causes exception B, then A is the cause exception of B.
+		Throwable initCause(Throwable cause): registers the specified exception as the cause exception
+		Throwable getCause(): returns the cause exception
+	-Reasons to use: 
+		1) To handle multiple exceptions as one.
+		2) When you want to change a checked exception to an unchecked exception.
+
+
+*3.2.1hashCode() - an application of this algorithm is the blockchain (256)
+-Method that returns the hash code of an object.
+-Object class hashCode() converts the object's address to an int and returns it.
+If you override -equals(), you must also override hashCode().
+This is because two objects with a true result of -equals() must have the same hashcode. (Very important!!!)
+-System.identityHashCode(Object obj) is the same as hashCode() for class Object.
+
+*toString(), overriding toString()
+-toString(): Method for converting an object to a string.
+-An object is a collection of ivs, so converting an object to a string is equivalent to converting the value of an iv to a string.
+-Object class is a utility class that provides useful methods related to objects
+	1) Setting the original toString() method
+	public String toString() {
+		// schematic object.class name.@location + hashcode in hexadecimal 
+		return getClass().getName() + "@" + Integer.toHexString(hashCode());
+	}
+	Example result: Card@19e0bfd 
+
+	2) So, to show it as an IV value, override it like below.
+	public String toString() {
+		return "kind : " + kind + ", number: " + number;
+	}
+
+	3) Using equals() and hashCode() together
+		public boolean equals (Object obj) {
+			if (!(obj instance of Card)) {
+				return false;
+			}	
+			Card c = (Card)obj;
+			return this.kind.equals(c.kind) && this.number == c.number
+		}
+
+		//If you override equals(), you must also override hashCode().
+		//int hash(Object... values) {...} 
+		//The parameter is a variable (Object...), so the number of values specified in the call is not 		fixed.
+		public int hashCode() {		
+			return objects.hash(kind, number);
+		}
+
+
