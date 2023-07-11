@@ -25,14 +25,14 @@
 	2) All classes inherit the 11 methods defined in class Object. (Chapter 9) 
 	3)Notify(), wait(), etc. are methods related to threads. 
 		(a)public String toString() : Returns the object's own information as a string
-		(b)public boolean equlas(Object obj) : Compares the object itself and object obj to see if they 		  are the same object (true if they are)
+		(b)public boolean equlas(Object obj) : Compares the object itself and object obj to see if they are the same object (true if they are)
 		(c)public int hashCode(): returns the hashcode of the object itself
 		(d) public Class getClass() : Returns a Class instance containing the object's class information
 		(e)protected Object clone(): returns a copy of this object
-		(f)protected void finalize() : automatically called by Garbage Collector(G.C) when the object is 		  destroyed (rarely used X)
+		(f)protected void finalize() : automatically called by Garbage Collector(G.C) when the object is destroyed (rarely used X)
 		(g)public void notify() : Wakes up one thread waiting to use the object itself.
 		(h)public void notifyAll() : Wakes up all threads waiting to use the object itself.
-		(i) public void wait(): causes the current thread to wait indefinitely until another thread calls 		  notify() or notifyAll().
+		(i) public void wait(): causes the current thread to wait indefinitely until another thread calls notify() or notifyAll().
 		   public void wait(long timeout) : wait for the specified amount of time (timeout)
 		   public void wait(long timeout, int nanos) : wait for the specified time (timeout, nanos).
 		(timeout is thousandths of a second, nanos is 10^9 of a second)
@@ -274,7 +274,8 @@ The -intanceof operator: used to check if a reference variable is castable. Retu
 -Ancestor interface constants: public static final keyword can always be omitted without exception.
 -Ancestor interface methods: public abstract can be omitted
 -Interface ancestors can only be interfaces (Object is not the highest ancestor)
--Multiple inheritance is possible (abstract methods don't mind conflicting): If the declarations are different, it's fine to inherit both, but if the declarations are the same and the contents are different, it can't decide which one to inherit. (However, interfaces are empty shells, so this is not a problem).
+-Multiple inheritance is possible (abstract methods don't mind conflicting): If the declarations are different, it's fine to inherit both, but if the declarations are the same 
+ and the contents are different, it can't decide which one to inherit. (However, interfaces are empty shells, so this is not a problem).
 	interface Fightable extends Movable, Attackable{ } //two members
 
 	interface Movable {
@@ -309,10 +310,10 @@ The -intanceof operator: used to check if a reference variable is castable. Retu
 	f.move(100, 200);
 	f.attack(new Fighter());
 
--인터페이스를 메서드의 리턴타입으로 지정할 수 있다.
--Fightable인터페이스를 구현한 클래스의 인스턴스를 반환 (애매하게 쓰기 위해서 - 다형성과 추상화를 사용해서)
-	Fightable method() { //반환타입이 일치하면 된다.
-		Fighter f = new Fighter(); --> //return new Fighter(); // 왼쪽과 오른쪽 문장은 같다.
+-You can specify an interface as the return type of a method.
+-Return an instance of a class that implements the Fightable interface (to be vague - use polymorphism and abstraction)
+	Fightable method() { //The return type just needs to match.
+		Fighter f = new Fighter(); --> //return new Fighter(); //The left and right sentences are the same.
 		return f; 
 	}
 	Fightable f = method(); //new Fighter();
@@ -326,7 +327,7 @@ The -intanceof operator: used to check if a reference variable is castable. Retu
 *2.8.7Advantages of interfaces
 -2.8.6 Check out the examples
 Act as a "go-between" to help two things (objects) "connect, talk, and communicate".
--Allows you to separate the declaration (design-shell) from the implementation (kernel).
+-Allows you to separate the declaration from the implementation.
 	1) Reduce development time. 
 	2) Allows for a flexible design that favors change. (Loosely coupled - less dependent).
 	3) Allows for standardization.
@@ -423,7 +424,7 @@ Act as a "go-between" to help two things (objects) "connect, talk, and communica
 	3) Local variable lv: value
 		class Ex7_15 {
 			public static void main(String[] args) {
-				Outer2 oc = new Outer2(); //You must first create an instance of the external 								    class before you can use the instance class's
+				Outer2 oc = new Outer2(); //You must first create an instance of the external class before you can use the instance class's
 				Outer2.InstanceInner ii= oc.new InstanceInner(); //Instances can be created
 
 				//Instance member
@@ -431,7 +432,7 @@ Act as a "go-between" to help two things (objects) "connect, talk, and communica
 				//static member (Can be used without an object from an external class)
 				System.out.println("Outer2.StaticInner.cv : " + Outer2.StaticInner.cv);
 			
-				//static Instances of the inner class do not need to create the outer class 					  (Outer2) first.
+				//static Instances of the inner class do not need to create the outer class (Outer2) first.
 				Outer2.StaticInner si = new Outer2.StaticInner();	
 				System.out.println("si.iv : " + si.iv););
 			}
