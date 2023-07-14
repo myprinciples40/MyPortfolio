@@ -10,5 +10,4 @@ class FastCampusBoardServiceProjectApplicationTests {
 	void contextLoads() {
 
 	}
-
 }
