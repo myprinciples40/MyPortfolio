@@ -9,7 +9,7 @@ public class Board {
     @GeneratedValue //Automatic numbering
     private Long bno; //Post number
     private String title;
-    private String Writer;
+    private String writer;
     private String content;
     private Long viewCnt;
     @Temporal(value = TemporalType.TIMESTAMP) //Date and time mapping
@@ -22,7 +22,7 @@ public class Board {
         return "Board{" +
                 "bno=" + bno +
                 ", title='" + title + '\'' +
-                ", Writer='" + Writer + '\'' +
+                ", Writer='" + writer + '\'' +
                 ", content='" + content + '\'' +
                 ", viewCnt=" + viewCnt +
                 ", inDate=" + inDate +
@@ -47,11 +47,11 @@ public class Board {
     }
 
     public String getWriter() {
-        return Writer;
+        return writer;
     }
 
     public void setWriter(String writer) {
-        Writer = writer;
+        this.writer = writer;
     }
 
     public String getContent() {
