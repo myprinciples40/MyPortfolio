@@ -1,5 +1,6 @@
 package com.fastcampus.jpaptractice;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,19 @@ import java.util.List;
  */
 
 public interface BoardRepository extends CrudRepository<Board, Long> {
+    @Query("SELECT b FROM Board b") // JPQL is case sensitive for names
+    List<Board> findAllBoard(); // Method names don't matter.
+
+    @Query("SELECT b FROM Board b WHERE b.title=?1 AND b.writer=?2")
+    List<Board> findByTitleAndWriter2(String title, String writer);
+
+    // Use when running complex queries
+    @Query(value = "SELECT * FROM BOARD", nativeQuery = true) // native SQL
+    List<Board> findAllBoardBySQL();
+
+    @Query(value = "SELECT TITLE, WRITER FROM BOARD", nativeQuery = true) // native SQL
+    List<Object[]> findAllBoardBySQL2();
+
     // SELECT COUNT(*) FROM BOARD WHERE WRITER = :writer
     int countAllByWriter(String writer);
 
