@@ -43,7 +43,7 @@ class BoardRepositoryTest {
 
         board.setTitle("modified Title");
         boardRepo.save(board);
-        //못 찾으면 새로운 board객체 반환
+        //Return a new board object if not found
         Board board2 = boardRepo.findById(1L).orElse(new Board());
         System.out.println("board = " + board);
         System.out.println("board2 = " + board2);

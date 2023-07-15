@@ -1,7 +1,31 @@
 package com.fastcampus.jpaptractice;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * Purpose: JPQL query method test
+ * Features: Add some JPQL query method in the BoardRepository
+ *
+ * Author: Jinhwan Kim (Jin)
+ * Date created: 2023-07-14
+ * Modification Date: 2023-07-15
+ */
 
 public interface BoardRepository extends CrudRepository<Board, Long> {
+    // SELECT COUNT(*) FROM BOARD WHERE WRITER = :writer
+    int countAllByWriter(String writer);
 
+    // SELECT * FROM BOARD WHERE WRITER = :writer
+    List<Board> findByWriter(String writer);
+
+    // SELECT * FROM BOARD WHERE TITLE = :title AND WRITER = :writer
+    List<Board> findByTitleAndWriter(String title, String writer);
+
+    // DELETE FROM BOARD WHERE WRITER = : writer
+    // For delete, Tx processing is required because multiple cases can be deleted.
+    @Transactional
+    int deleteByWriter(String writer);
 }
