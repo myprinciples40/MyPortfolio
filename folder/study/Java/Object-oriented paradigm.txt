@@ -1,0 +1,46 @@
+<Object-Oriented Paradigm>
+*high cohesion, low coupling - the advantage is that if you put things together with high cohesion, when something changes, that makes easy to change and fix only the particular part of the code. 
+
+
+*Object-oriented paradigm
+-Assigning the right responsibilities to the right objects so they can communicate with each other and work together. 
+The object-oriented paradigm has emerged as a way to reduce the increasing complexity of SW.
+-Two important points in my opinion 
+1.Focus on objects, not classes
+2.How to assign appropriate roles and responsibilities to objects
+
+
+*4 characteristics of object orientation
+1.Abstraction-representing only the essentials by removing unnecessary distinctions (also called generalization, simplification, the purpose is to reduce complexity)
+2.Polymorphism - referencing multiple types of objects with a single type.
+3.Encapsulation - hiding the details of an object from the outside world. The purpose is to make code easier to change by exposing only the interface.
+4.Inheritance - inheriting from a parent.
+
+
+*5 Object-Oriented Design Principles (SOLID)
+1. SRP : Single Responsibility Principle - A method has only one responsibility.
+	-A method has only one responsibility.
+2. OCP : Open/Closed Principle (Open/Closed Principle) - Overriding inheritance (open), changing existing code (close)
+	-Open for inheritance, closed for changes to existing code.
+3. LSP : Liskov's Substitution Principle - Polymorphism
+	-The code should work as intended when you substitute an instance of the child class where you would have used an instance of the parent class.
+4. ISP : Interface Segregation Principle - Separate similar interfaces if they serve different purposes.
+	-Separate similar interfaces for different purposes
+5. DIP: Dependency Inversion Principle - Write code that relies on less concrete (abstractions) because they are less favorable to concrete changes.
+	-Write code that relies on less concrete (abstraction) because concrete changes are unfavorable.
+
+
+*Object-oriented design and implementation sequence
+1. Think about what objects make up the domain.
+2. Consider the relationships between objects
+3. model the domain by abstracting dynamic objects into static types
+4. Design cooperation
+5. Assign appropriate responsibilities to the types that encompass the objects
+6. implement
+Note) In an object-oriented world, all objects are active.
+
+
+* Designing for statefulness in singleton objects can cause problems. 
+- It can lead to undesirable results.
+- Also, Threads are not safe.
+- A race condition is when multiple processes or threads compete for access to a single resource at the same time.
