@@ -1,9 +1,6 @@
-package com.fastcampus.jpaptractice;
+package com.fastcampus.jpapractice;
 
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,22 +8,15 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Purpose: CrudRepository test
- * Features: Verify that INSERT, SELECT, UPDATE, and DELETE all work well
- *
- * Author: Jinhwan Kim (Jin)
- * Date created: 2023-07-14
- * Modification Date:
- */
-
-@SpringBootTest
+@ DisplayName("BoardRepository test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SpringBootTest
 class BoardRepositoryTest {
     @Autowired
     private BoardRepository boardRepo;
 
     @Test
+    @DisplayName("Delete test")
     @Order(4)
     public void deleteTest() {
         boardRepo.deleteById(1L); //Delete post 1
@@ -36,6 +26,7 @@ class BoardRepositoryTest {
     }
 
     @Test
+    @DisplayName("Update test")
     @Order(3)
     public void updateTest() {
         Board board = boardRepo.findById(1L).orElse(null);
@@ -52,6 +43,7 @@ class BoardRepositoryTest {
     }
 
     @Test
+    @DisplayName("Select test")
     @Order(2)
     public void selectTest() {
 //        Board board = boardRepo.findById(1L).get(); //Throwing an exception when no value exists
@@ -62,12 +54,13 @@ class BoardRepositoryTest {
     }
 
     @Test
+    @DisplayName("Insert test")
     @Order(1)
     public void insertTest() {
         Board board = new Board();
         board.setBno(1L);
-        board.setTitle("Test Title");
-        board.setContent("This is the Test");
+        board.setTitle("Test title");
+        board.setContent("This is test content.");
         board.setWriter("aaa");
         board.setViewCnt(0L);
         board.setInDate(new Date());

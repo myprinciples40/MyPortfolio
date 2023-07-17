@@ -1,13 +1,13 @@
-package com.fastcampus.jpaptractice;
+package com.fastcampus.jpapractice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JpaPtracticeApplicationTests {
+class JpaPracticeApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

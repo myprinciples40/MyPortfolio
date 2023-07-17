@@ -1,4 +1,4 @@
-package com.fastcampus.jpaptractice;
+package com.fastcampus.jpapractice;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

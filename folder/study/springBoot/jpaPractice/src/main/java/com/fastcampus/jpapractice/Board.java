@@ -1,4 +1,4 @@
-package com.fastcampus.jpaptractice;
+package com.fastcampus.jpapractice;
 
 import javax.persistence.*;
 import java.util.Date;

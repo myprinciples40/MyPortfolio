@@ -1,13 +1,11 @@
-package com.fastcampus.jpaptractice;
+package com.fastcampus.jpapractice;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityManager;
 import java.util.Date;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -15,13 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
  * Features: Add some JPQL query method in the BoardRepository
  *
  * Author: Jinhwan Kim (Jin)
- * Date created: 2023-07-15
+ * Date created: 2023-07-16
  * Modification Date:
  */
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class BoardRepositoryTest2 {
+class BoardRepositoryTest4 {
+    @Autowired
+    public EntityManager em;
     @Autowired
     private BoardRepository boardRepo;
 
@@ -41,24 +41,9 @@ class BoardRepositoryTest2 {
     }
 
     @Test
-    @Order(3)
-    public void deleteTest() {
-        assertTrue(boardRepo.deleteByWriter("writer1") == 20);
-        List<Board> list = boardRepo.findByWriter("writer1");
-        assertTrue(list.size() == 0);
+    @DisplayName("Test writing queries with querydsl1 - Write a simple query")
+    public void querydslTest() {
+//        QBoard board = QBoard.board;
     }
 
-    @Test
-    @Order(2)
-    public void findTest() {
-        List<Board> list = boardRepo.findByWriter("writer1");
-        assertTrue(list.size() == 20);
-        list.forEach(System.out::println);
-    }
-
-    @Test
-    @Order(1)
-    public void countTest() {
-        assertTrue(boardRepo.countAllByWriter("writer1") == 20);
-    }
 }

@@ -1,4 +1,4 @@
-package com.fastcampus.jpaptractice;
+package com.fastcampus.jpapractice;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,13 +6,13 @@ import java.util.Date;
 
 @Entity
 public class User {
-    @Id //Designate as PK
+    @Id // Designate as PK
     private String id;
     private String password;
     private String name;
     private String email;
-    private Date inDate; //Date entered
-    private Date upDate; //Date changed
+    private Date inDate; // Date entered
+    private Date upDate; // Change Date
 
     @Override
     public String toString() {
