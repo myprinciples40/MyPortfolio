@@ -1,8 +1,12 @@
 package com.fastcampus.jpapractice;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -11,6 +15,13 @@ public class User {
     private String password;
     private String name;
     private String email;
+
+    // FetchType.EAGER: Bringing information from two entities together (join)
+    // FetchType.LAZY: separately. getList() - default
+//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // One User, multiple Boards
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY) // One User, multiple Boards
+    List<Board> list = new ArrayList<>();
+
     private Date inDate; // Date entered
     private Date upDate; // Change Date
 
@@ -21,9 +32,18 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", list=" + list +
                 ", inDate=" + inDate +
                 ", upDate=" + upDate +
                 '}';
+    }
+
+    public List<Board> getList() {
+        return list;
+    }
+
+    public void setList(List<Board> list) {
+        this.list = list;
     }
 
     public String getId() {

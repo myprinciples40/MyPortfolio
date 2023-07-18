@@ -9,8 +9,12 @@ public class Board {
     @GeneratedValue //Automatic numbering
     private Long bno; //Post number
     private String title;
-    private String writer;
     private String content;
+
+    @ManyToOne // One user on multiple boards
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     private Long viewCnt;
     @Temporal(value = TemporalType.TIMESTAMP) //Date and time mapping
     private Date inDate;
@@ -22,12 +26,20 @@ public class Board {
         return "Board{" +
                 "bno=" + bno +
                 ", title='" + title + '\'' +
-                ", Writer='" + writer + '\'' +
                 ", content='" + content + '\'' +
+//                ", user=" + user +
                 ", viewCnt=" + viewCnt +
                 ", inDate=" + inDate +
                 ", upDate=" + upDate +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getBno() {
@@ -44,14 +56,6 @@ public class Board {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
     }
 
     public String getContent() {
