@@ -48,7 +48,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// queryDSL setting
+// QqueryDSL setting
 def generated = file("src/main/generated")
 
 // Specify the queryDSL QClass file creation location
