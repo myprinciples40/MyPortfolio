@@ -1,5 +1,6 @@
 package com.fastcampus.jpapractice;
 
+import com.fastcampus.jpapractice.repository.BoardRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQuery;
