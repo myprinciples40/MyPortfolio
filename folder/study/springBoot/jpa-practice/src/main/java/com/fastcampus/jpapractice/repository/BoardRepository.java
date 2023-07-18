@@ -1,5 +1,6 @@
-package com.fastcampus.jpapractice;
+package com.fastcampus.jpapractice.repository;
 
+import com.fastcampus.jpapractice.Board;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
