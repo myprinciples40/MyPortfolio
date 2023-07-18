@@ -34,7 +34,7 @@ class ManyToOneTest {
     @Autowired
     BoardRepository boardRepository;
 
-    @Transactional
+    @Transactional // Listing information is not imported because I didn't set anything up
     @Test
     public void test() {
         // 1. Create test data

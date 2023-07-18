@@ -1,17 +1,17 @@
 package com.fastcampus.jpapractice.repository;
 
-import com.fastcampus.jpapractice.Member;
+
+import com.fastcampus.jpapractice.User;
 import org.springframework.data.repository.CrudRepository;
+
 
 /**
  * Purpose: Mapping associations
- * Features: 1:1 associations
+ * Features: 1:n associations
  *
  * Author: Jinhwan Kim (Jin)
  * Date created: 2023-07-18
  * Modification Date:
  */
-
-public interface MemberRepository extends CrudRepository<Member, Long> {
-
+public interface UserRepository extends CrudRepository<User, String> {
 }
