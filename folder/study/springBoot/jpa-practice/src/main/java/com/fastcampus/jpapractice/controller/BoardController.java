@@ -4,12 +4,16 @@ import com.fastcampus.jpapractice.Board;
 import com.fastcampus.jpapractice.User;
 import com.fastcampus.jpapractice.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +22,38 @@ import java.util.List;
 public class BoardController {
     @Autowired
     BoardService boardService;
+
+    @Value("${uploadPath}")
+    private String uploadPath;
+
+    @GetMapping("/uploadForm")
+    public String showUploadForm() {
+        return "board/uploadFile";
+    }
+
+    @PostMapping("/uploadFile")
+    public void uploadPath(MultipartFile[] files) throws IOException {
+        for (MultipartFile file : files) {
+            System.out.println("file.getOriginalFilename() = " + file.getOriginalFilename());
+            System.out.println("Upload File Size: " + file.getSize());
+
+            File upFile = new File(uploadPath, file.getOriginalFilename());
+            file.transferTo(upFile); // Save the uploaded file to the C:/upload folder
+        }
+    }
+
+    @GetMapping("/modify")
+    public String modify(Long bno, Model model) {
+        Board board = boardService.read(bno);
+        model.addAttribute("board", board);
+        return "board/write";
+    }
+
+    @PostMapping("/modify")
+    public String modify(Board board) {
+        boardService.modify(board);
+        return "redirect:/board/list";
+    }
 
     @GetMapping("/write")
     public String showWriteForm(Model model) {
