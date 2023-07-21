@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulletin Board Page</title>
+</head>
+
+<body>
+
+<header>
+    header part
+    <hr>
+</header>
+
+<main>
+    <form>
+        <label for="search-type" hidden>Type</label>
+        <select id="search-type" name="search-type">
+            <option>Title</option>
+            <option>Body</option>
+            <option>Id</option>
+            <option>Nickname</option>
+            <option>Hashtag</option>
+        </select>
+        <label for="search-value" hidden>Search Terms</label>
+        <input id="search-value" type="search" placeholder="Search for..." name="search-value">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Hashtag</th>
+            <th>Writer</th>
+            <th>Created on</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>First post</td>
+            <td>#java</td>
+            <td>Jin</td>
+            <td>2023-07-21</td>
+        </tr>
+        <tr>
+            <td>Second post</td>
+            <td>#HTML</td>
+            <td>Ellie</td>
+            <td>2023-07-18</td>
+        </tr>
+        <tr>
+            <td>Third post</td>
+            <td>#java</td>
+            <td>Jin</td>
+            <td>2023-07-20</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav>
+        <table>
+            <tr>
+                <td>previous</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>next</td>
+            </tr>
+        </table>
+    </nav>
+</main>
+
+<footer>
+    <hr>
+    footer part
+</footer>
+
+</body>
+</html>
