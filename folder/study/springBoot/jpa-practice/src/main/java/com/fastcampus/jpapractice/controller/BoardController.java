@@ -6,6 +6,7 @@ import com.fastcampus.jpapractice.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,10 +48,10 @@ public class BoardController {
     }
 
     @ResponseBody
-    @GetMapping(value="/download/{filename}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public ResponseEntity<Resource> downloadFile(@PathVariable("filename") String filename) {
+    @GetMapping(value="/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<Resource> downloadFile(String filename) {
         System.out.println("fileName = " + filename);
-        Resource resource = (Resource) new FileSystemResource(uploadPath + filename);
+        Resource resource = new FileSystemResource(uploadPath + filename);
 
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
