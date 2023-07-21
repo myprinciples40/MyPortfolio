@@ -5,14 +5,20 @@ import com.fastcampus.jpapractice.User;
 import com.fastcampus.jpapractice.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,22 +36,44 @@ public class BoardController {
         return "board/uploadFile";
     }
 
-//    @PostMapping("/uploadFile")
-@ResponseBody
-@PostMapping(value="/uploadAjax", headers="Content-Type=multipart/form-data")
-//    @RequestMapping(value="/uploadAjax", headers="Content-Type=multipart/form-data", method=RequestMethod.POST)
-public void uploadFile(@RequestParam(value="files") MultipartFile[] files) throws IOException {
-    for (MultipartFile file : files) {
-        if (file.isEmpty()) {
-            continue;
-        }
-        System.out.println("file.getOriginalFilename() = " + file.getOriginalFilename());
-        System.out.println("file.getSize(): " + file.getSize());
+    @PostMapping("/deleteFile")
+    public ResponseEntity<String> deleteFile(String filename) {
+        System.out.println("filename = " + filename);
 
-        File upFile = new File(uploadPath, file.getOriginalFilename());
-        file.transferTo(upFile); // Save the uploaded file to the C:/upload folder
+        File file = new File(uploadPath + filename);
+        if (file.delete() == true)
+            return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-}
+
+    @ResponseBody
+    @GetMapping(value="/download/{filename}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<Resource> downloadFile(@PathVariable("filename") String filename) {
+        System.out.println("fileName = " + filename);
+        Resource resource = (Resource) new FileSystemResource(uploadPath + filename);
+
+        return new ResponseEntity<>(resource, HttpStatus.OK);
+    }
+
+    //    @PostMapping("/uploadFile")
+    @ResponseBody
+    @PostMapping(value = "/uploadAjax", headers = "Content-Type=multipart/form-data")
+    public ResponseEntity<List<String>> uploadFile(@RequestParam(value = "files") MultipartFile[] files) throws IOException {
+        List<String> list = new ArrayList<>();
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                continue;
+            }
+            System.out.println("file.getOriginalFilename() = " + file.getOriginalFilename());
+            System.out.println("file.getSize(): " + file.getSize());
+
+            File upFile = new File(uploadPath, file.getOriginalFilename());
+            file.transferTo(upFile); // Save the uploaded file to the C:/upload folder
+            list.add(file.getOriginalFilename());
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
     @GetMapping("/modify")
     public String modify(Long bno, Model model) {

@@ -3,12 +3,45 @@
 <head>
     <title>File Upload</title>
     <style>
-        a { text-decoration: none; }
+        a {
+            text-decoration: none;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#uploadBtn').on("click", function() {
+        let fileList = [];
+
+        function deleteFile(filename) {
+            $.ajax({
+                url: '/board/deleteFile',
+                data: { filename: filename },
+                dataType : 'text',
+                type: 'POST',
+                success: function (result) {
+                    alert(result);
+                    // Remove deleted files from the file list
+                    fileList = fileList.filter(f => f!= filename) // Leave the files except for that one.
+                    showFileLIst();
+                }, error: function (e) {
+                    console.log("ERROR : ", e);
+                }
+            })
+        }
+
+        function showFileLIst() {
+            let tmp = ``;
+            for (file of fileList) {
+                tmp += `<li><a href="/board/download?filename=${file}">${file}</a>
+                            <button id="deleteBtn" onclick="deleteFile('${file}')">Delete</button>
+                        </li>`;
+            }
+            $('#fileList ul').html(tmp);
+        }
+
+        $(document).ready(function () {
+            let copy = $('#uploadDiv').clone();
+
+            $('#uploadBtn').on("click", function () {
                 var formData = new FormData();
                 var inputFile = $('input[name=files]');
                 var files = inputFile[0].files;
@@ -18,14 +51,21 @@
                 }
 
                 $.ajax({
-                    url:'/board/uploadAjax',
-                    processData : false,
-                    codeType : false,
+                    url: '/board/uploadAjax',
+                    processData: false,
+                    codeType: false,
                     contentType: false,
-                    data : formData,
-                    type : 'POST',
-                    success : function (result) {
+                    data: formData,
+                    type: 'POST',
+                    success: function (result) {
                         console.dir(result);
+                        // 1. Initialize uploadDiv
+                        $('#uploadDiv').html(copy.html());
+
+                        // 2. Add a list of files to fileList
+                        fileList = fileList.concat(result);
+                        showFileLIst();
+
                     }, error: function (e) {
                         console.log("ERROR : ", e);
                     }
@@ -38,10 +78,15 @@
 <h2>file upload</h2>
 <!--<form id="uploadForm" action="/board/uploadFile" method="post" enctype="multipart/form-data">-->
 <div id="uploadDiv">
-    <input type="file" id="file" name="files" multiple />
+    <input type="file" id="file" name="files" multiple/>
 </div>
-    <br><br>
-    <button id="uploadBtn">Upload File</button>
+<br><br>
+<button id="uploadBtn">Upload File</button>
 <!--</form>-->
+<div id="fileList">
+    <ul>
+
+    </ul>
+</div>
 </body>
 </html>
