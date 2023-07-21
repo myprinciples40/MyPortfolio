@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -31,11 +30,16 @@ public class BoardController {
         return "board/uploadFile";
     }
 
-    @PostMapping("/uploadFile")
-    public void uploadPath(MultipartFile[] files) throws IOException {
+//    @PostMapping("/uploadFile")
+//    @PostMapping(value="/uploadAjax", body="content-type=multipart/*")
+    @PostMapping(value = "/uploadAjax")
+    public void uploadFile(@RequestParam(value="files") MultipartFile[] files) throws IOException {
         for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                continue;
+            }
             System.out.println("file.getOriginalFilename() = " + file.getOriginalFilename());
-            System.out.println("Upload File Size: " + file.getSize());
+            System.out.println("file.getSize(): " + file.getSize());
 
             File upFile = new File(uploadPath, file.getOriginalFilename());
             file.transferTo(upFile); // Save the uploaded file to the C:/upload folder
