@@ -31,20 +31,21 @@ public class BoardController {
     }
 
 //    @PostMapping("/uploadFile")
-//    @PostMapping(value="/uploadAjax", body="content-type=multipart/*")
-    @PostMapping(value = "/uploadAjax")
-    public void uploadFile(@RequestParam(value="files") MultipartFile[] files) throws IOException {
-        for (MultipartFile file : files) {
-            if (file.isEmpty()) {
-                continue;
-            }
-            System.out.println("file.getOriginalFilename() = " + file.getOriginalFilename());
-            System.out.println("file.getSize(): " + file.getSize());
-
-            File upFile = new File(uploadPath, file.getOriginalFilename());
-            file.transferTo(upFile); // Save the uploaded file to the C:/upload folder
+@ResponseBody
+@PostMapping(value="/uploadAjax", headers="Content-Type=multipart/form-data")
+//    @RequestMapping(value="/uploadAjax", headers="Content-Type=multipart/form-data", method=RequestMethod.POST)
+public void uploadFile(@RequestParam(value="files") MultipartFile[] files) throws IOException {
+    for (MultipartFile file : files) {
+        if (file.isEmpty()) {
+            continue;
         }
+        System.out.println("file.getOriginalFilename() = " + file.getOriginalFilename());
+        System.out.println("file.getSize(): " + file.getSize());
+
+        File upFile = new File(uploadPath, file.getOriginalFilename());
+        file.transferTo(upFile); // Save the uploaded file to the C:/upload folder
     }
+}
 
     @GetMapping("/modify")
     public String modify(Long bno, Model model) {
