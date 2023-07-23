@@ -1,0 +1,283 @@
+<Warnings>
+*It is not recommended to amend if it is saved in remoting, and it is not recommended to post push if it is amended!!!
+*There are 3 ways to merge
+	1)Create a merge commit (normal)
+	2)Squash and merge 
+	3)Rebase and merge
+*Be sure to clear your history after merging a pull request.
+(You can restore it later anyway)
+
+
+<Git Kraken>
+*Git Kraken Terminal command
+gk 
+
+<Git bash>
+cd ~ <---go to the user home directory you are currently connected to
+cd <folder name> <---go to that folder
+cd .. <---go back one level
+pwd <---current directory address
+ls <---list
+ls <folder name> <---look into that folder
+ls -a <---view a list of folders, including all hidden files
+la -al <---view list of folders with access, including hidden files
+cat <folder name> <---view reference information
+start . <---open the current folder
+code . <---open that folder Visual Studio Code
+
+
+vim <filename> <---opens the file entered after the command.
+(If the file exists, it will be opened; if not, a new file will be created).
+[i] <---transition to input mode (input, edit, etc.)
+[esc] <---exit mode (save, exit, etc.)
+:w <---write save the document
+:q <---quit Quit the editor
+:wq <---save the document you were editing and exit
+:q! <---exit the editor without saving the document (creates a temporary file with a .swp extension)
+
+touch study/red.txt <---create a file in the corresponding folder
+mkdir <folder name> <---create the folder 
+mkdir "<folder name>" <--with spaces in the folder name
+rm <filename> <---erase a file
+rm -rf <folder name> <---erase the folder (also deletes subdirectories and files)
+cp f1.txt f2.txt <---create f2.txt with a copy of file f1.txt
+cp -r <parentfolder>/a/* <parentfolder>/b <---copy all files in folder a to folder b
+git mv rename filename <---change filename
+
+
+<GIt> - How do we leave a history? Something to think about
+git --version <---check the current version
+git update-git-for-windows <---update version
+pwd <--- current folder
+* Check your configuration
+git config --global --list
+* Help (global)
+git --help
+* Help (specific commands)
+git commit -h
+cls <---clear screen
+* Check status
+git status
+git log <---shows the commit ID and committed File information
+git log --online <---patch is autocompleted and a short, one-line log is displayed.
+git reflog <---Show the history (log) of the commit that HEAD pointed to (ref)
+git reflog <brandname> <---shows reflog by branch
+gitk <---Displays commit information in a GUI screen
+git branch <---Displays branch information
+
+
+*Setup
+Go to the folder where you want to create the local repository and execute
+git status <---check if the git repository has been created
+git init <git_local> <---create an initial folder (create a directory and initialize git repository at the same time)
+git config --global user.email <email_address>
+git config --global user.name <user_name>
+git status <---Check the status of the working directory and staging area
+
+
+*terms
+tracked file <---files managed by git
+untracked file <---files not managed by git 
+
+
+*Redo changes (used when you messed up your current work) - only before committing
+--Used when you want to go back to a point where you want to start fresh, create a new branch, and create files with new versions
+
+git checkout <commit-hash> <---only move HEAD
+
+git checkout HEAD <filename> <---remove current changes and move to the previous version (head)
+git checkout -- <filename> <--same code as above
+git restore <filename> <--same code as above
+
+git branch main <--Used to re-head when you're done (create a new branch and put it on the commit you saved)
+git switch - <--same effect as git branch main (same as above)
+
+git restore --source HEAD~1 <filename> <--moves the file version to a fixed point (does not cause HEAD to drop)
+git restore --staged <filename> <---subtract from stage any files that were incorrectly put in the staging area 
+
+
+-Move to the commit address where the master branch is located so that work saved in other branches can be carried over from the master.
+git reset <commit-hash> <---Used in case of an incorrect commit. Returns to the previous commit. Only the previous commit is deleted, and the changes made to the file remain in the working directory. In this case, you can create a new branch, commit it, and return it to the master branch. (Do not use the --hard option!)
+
+git reset --hard <commit> <--- Use this when you want to delete the commit and changes to fix the above problem.
+git reset --hard HEAD~1 <---erase the last commit
+
+git revert <commit-hash> <--Unlike reset --hard, instead of deleting a commit, revert creates a new commit that changes the incorrect parts to the previous state and saves it, leaving the history of the commit you want to fix.
+(Use revert when collaborating with others!!! Important!!! - You can share with everyone. RESET will completely delete the commit.)
+
+
+*Check your changes before staging your code
+git diff <---only unstaged
+git diff HEAD <filename-option> <---Since last commit(both)
+git diff HEAD HEAD~1 <---Check the difference between the immediately preceding HEAD and the current HEAD
+
+git diff --staged <filename-option> <---only staged
+git diff --cached <---the same code as above
+
+git diff branch1..branch2 <or> git diff branch1 branch2
+git diff commit1..commit2 <or> git diff commit1 commit2
+
+
+*stash (similar to stack) - must be before commit - does not apply to untracked files
+-only applies to files that are being versioned
+git stash (save) <---save and revert changes temporarily
+	1)git stash apply <---apply stash to current working state and keep it in the stash list
+				(most recently stashed)
+	-git stash apply stash@{0}
+	2)git stash drop (delete the most recent stash)
+	-git stash drop stash@{0}
+git stash apply; git stash drop; <---apply and drop at once 
+git stash pop <---stash apply and drop at once (same as above)
+git stash list
+git stash show
+git stash clear
+
+After stash apply, git reset --hard HEAD <--- restores the working copy to the most recent commit state.
+stash apply again will load the working files stored in stash.
+(can be repeated over and over)
+
+
+*Create a branch
+git branch <---branch information
+git branch -v <---branch details
+git branch <branch name (e.g. dev)>
+git commit -a -m "Add two comments" <---add + commit
+git commit -am "Add two comments" <--- same code as above
+
+git switch <brandname> <---change branch (move head too) - very simple
+git switch -c <brandname> <--- create new branch + move (move head too)
+git checkout -b <brandname> <---same code as above
+
+git checkout HEAD~1 <---move head back one level
+git checkout dev <---move to dev branch
+git checkout main <---move to main branch
+git checkout <commit-hash> <---Detached HEAD
+git switch main <---HEAD Reattach to master
+git switch - <---Return to previous head
+git branch - <---Same code as above
+
+
+git branch -d <brandname> <---delete branch
+git branch -D <brandname> <---forcibly delete a branch (ignore mergers)
+git branch -m dev <branchname to change> <---rename the branch
+
+git switch master <---Switch to HEAD master
+git merge bugfix <---merge current head into bugfix
+
+git merge dev --ff <--merge main branch with dev (fast-forward merge: no new commits are created)
+git merge dev --no--ff <---(no fast-forward merge: unconditionally create a new commit - both files are the same file)
+git merge --abort <--cancel the merge
+git merge --continue <--continue merge (if it crashes and stops) - if it starts, press :wq and enter
+
+
+*remote repository
+Create a git folder with mkdir after checking with git status
+git init <git_local> <---create git folder + repository
+vim hello.txt <---create file
+git add hello.txt
+$ git commit -m "M1"
+
+# Link a local repository to a specific remote repository (once)
+git remote add origin <origin repository>
+
+git add . <---upload the entire folder (if you get an error, delete all the .git folders in that folder and try again)
+
+--Therefore, git add . to use!
+git add . <--- Add everything, taking into account what's in .gitignore
+git add * <--- add everything, regardless of what's in .gitignore
+
+git remote remove origin <---remotely remove an existing repository
+git remote rename origin <newname(light)> <---Rename repository remote
+
+git commit -m "fixing the error"
+git commit -m "message"
+git remote -v <---verify connection
+git push -u origin main(master) <---upload
+git push <---after pushing with -u at least once, just push after that
+git push --set-upstream origin <new branch name (after creation)> <---Your remote repository now has a branch called <new branch name>.
+
+
+Clone *git (download and link all files in git)
+mkdir <folder name> <---make it the same name as your git repository
+git clone <origin repository> <---download all folders from the remote repository to your local storage (the .after it means you want to clone it directly, not automatically create a folder in that directory)
+git pull origin main(master) <---update all github files in the current folder (you will only get the modified parts) - be sure to pull and push when collaborating!!!
+
+
+*Create a commit (a commit refers to your previous commit - important!!!)
+git commit -m "add aaa.txt (example)" <---Write a description of the commit inside "". 
+git show HEAD <---shows details about recent commits (lowercase head is fine)
+git log <---shows the commit ID and information about the committed files
+git log --decorate --all (--oneline) <---show logs for all branches
+git log --online <---patches will be autocompleted and a short, single line of log information will be displayed.
+git reflog <---Show the history (log) of the commit pointed to by HEAD (ref)
+git reflog <brandname> <---shows reflogs by branch
+git checkout HEAD@{4} <---same as git checkout <commitID> (move branch) 
+git show commitID <---details of a specific commit
+git log-g show reflog in detail
+git log -p <---See each commit and differences in source between commits
+gitk <---Displays commit information on a GUI screen
+git branch <---Branch information
+git diff [commit hash]...[commit hash] <---Differences between source code corresponding to each commit
+
+
+*Add to Staging Area (Cart)
+git add <filename1> <filename2>
+git add <folder name> <---add all files in the specified folder
+git add * <---add all files or folders in the current folder (excluding empty folders)
+git add -u <---add all files that have ever been committed (the files must be in the commit history)
+
+
+*Delete to the staging area (sending it back to the working directory)
+git rm --cached <file name
+git commit -m 'delete aaa.txt' <---commit to leaving a history of deletions
+git reset <filename
+git reset <---removes all folders and files in the current folder from the staging area
+
+
+*Modifying a commit (modifying a commit creates a new commit)
+1.Use to add missing files
+2. to edit the commit message
+git add <filename
+git commit --amend <---immediately executes the previous commit. You can see the history of recent commits (and edit the commit message)
+git commit --amend -sm "changed message" <---if you only want to edit the commit message
+
+
+*Create a revert commit
+git revert HEAD <---create a new commit that reverses the most recent commit (preserves history)
+git commit --amend will change the commit ID even if you don't change anything (to keep history)
+git reflog <---command to check previous logs
+
+
+*Modifying commit 1 (reverting to staging area)
+1. git reset --soft <commitID or HEAD~1 (step back as desired)
+2. git add <filename> (add the missing file)
+2-1. If you want to remove a file from the staging area, use
+git reset <filename
+3. git commit -m "message" (move all files)
+@Note>If I want to combine two commits into one (break it down to the smallest unit of work).
+ex) Read function - commit / Delete function - commit / UI or Test, etc.
+If you run git reset --soft twice, two commits will enter the staging area.
+
+
+*Modifying a commit2 (reverting the working directory)
+1. Assuming there are 3 files aaa.txt, bbb.txt, and ccc.txt in the current directory, run
+git reset --hard <commitID(bbb)> <--- sending a working copy to the most recent commit state
+The -HEAD will be the directory state with the following steps aaa.txt, bbb.txt. (Note that ccc.txt has not been erased).
+2.git reset --hard <--Return HEAD to the directory with ccc.txt (it should be back to normal).
+3.If I create ddd.txt with commit while HEAD is in bbb.txt, you will have aaa.txt, bbb.txt, and ddd.txt in your working directory. 
+4. If you need to see or get ccc.txt in this state, you can also run
+git reset --hard <commitID> (make sure you know the commit ID of ccc.txt) - this will change your working directory to aaa.txt, bbb.txt, and ccc.txt.
+@Note>git reset --hard HEAD~1 <---goes to the previous HEAD (giving a number like 2 goes to the HEAD two steps before)
+
+
+*Fetch from a Git remote repository (fetch vs pull)
+git remote -v <---verify the remote repository
+git log --decorate --all --online <---can be used to see the difference between git fetch and git pull.
+
+git pull <---downloads and merges the required files from the remote repository. This refers to commits like those in remotes/origin. 
+(If you merge incorrectly, you can revert to the previous state by going back to the commit in ORIG_HEAD).
+
+git fetch <---refers to the commit state of the remote repository while the local repository master remains the same. (It is saved it to the remote repository, but haven't made any changes to the local master yet) 
+git diff HEAD origin/master <---git fetch to see the difference in commits between the local and remote repositories
+
+git merge origin/master <---merge the master branch of your local repository with the master branch of origin after checking with git diff (you'll need to do a git fetch and then merge it with the master branch of origin - but it's useful for careful work)
