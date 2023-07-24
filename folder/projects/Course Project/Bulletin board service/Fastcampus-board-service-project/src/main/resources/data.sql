@@ -1,3 +1,8 @@
+-- Test account
+-- TODO: Data setting for testing but password exposed. Improvement.
+insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
+('ellie', 'asdf1234', 'Ellie', 'ellie@mail.com', 'I am ellie.', now(), 'ellie', now(), 'ellie');
+
 insert into article (title, content, hashtag, created_by, modified_by, created_at, modified_at) values ('Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', 'Teal', 'Greer', 'Lek', '2022-09-17 14:16:30', '2022-07-28 16:37:00');
 insert into article (title, content, hashtag, created_by, modified_by, created_at, modified_at) values ('Morbi non quam nec dui luctus rutrum.', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', 'Crimson', 'Ernestine', 'Emmy', '2022-10-25 08:30:13', '2023-02-18 13:27:37');
 insert into article (title, content, hashtag, created_by, modified_by, created_at, modified_at) values ('Donec ut dolor.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.', null, 'Dreddy', 'Ignacius', '2023-06-12 18:18:30', '2022-08-24 01:25:10');
