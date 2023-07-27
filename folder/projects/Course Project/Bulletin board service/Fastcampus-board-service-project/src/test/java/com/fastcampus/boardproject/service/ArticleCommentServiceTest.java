@@ -2,9 +2,11 @@ package com.fastcampus.boardproject.service;
 
 import com.fastcampus.boardproject.domain.Article;
 import com.fastcampus.boardproject.domain.ArticleComment;
+import com.fastcampus.boardproject.domain.UserAccount;
 import com.fastcampus.boardproject.dto.ArticleCommentDto;
 import com.fastcampus.boardproject.repository.ArticleCommentRepository;
 import com.fastcampus.boardproject.repository.ArticleRepository;
+import com.fastcampus.boardproject.repository.UserAccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +28,7 @@ class ArticleCommentServiceTest {
 
     @Mock private ArticleCommentRepository articleCommentRepository;
     @Mock private ArticleRepository articleRepository;
+    @Mock private UserAccountRepository userAccountRepository;
 
     @DisplayName("When queried by post id, returns a list of corresponding comments.")
     @Test
@@ -33,8 +36,9 @@ class ArticleCommentServiceTest {
         // Given
         Long articleId = 1L;
 
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("Jin", "pw", null, null, null));
         given(articleRepository.findById(articleId)).willReturn(Optional.of(
-                Article.of("title", "content", "#java")));
+                Article.of(userAccount, "title", "content", "#java")));
 
         // When
         List<ArticleCommentDto> articleComments = sut.searchArticleComments(articleId);

@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
@@ -24,6 +24,8 @@ public class Article extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter @ManyToOne(optional = false) private UserAccount userAccount;
+
     @Setter
     @Column(nullable = false)
     private String title;
@@ -36,7 +38,7 @@ public class Article extends AuditingFields {
 
     //Bidirectional binding
     //I'm going to collect all the comments that are linked to this article and view them as a collection without allowing duplicates.
-    @OrderBy("id")
+    @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     @ToString.Exclude
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
@@ -44,22 +46,22 @@ public class Article extends AuditingFields {
     protected Article() {
     }
 
-    private Article(String title, String content, String hashtag) {
+    private Article(UserAccount userAccount, String title, String content, String hashtag) {
+        this.userAccount = userAccount;
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
     }
 
-    public static Article of(String title, String content, String hashTag) {
-        return new Article(title, content, hashTag);
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag) {
+        return new Article(userAccount, title, content, hashtag);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-//        if (!(o instanceof Article article)) return false; //Java 14 pattern matching from jdk 17
-        if (!(o instanceof Article)) return false;
-        Article article = (Article) o;
+        if (!(o instanceof Article article)) return false; //Java 14 pattern matching from jdk 17
+        article = (Article) o;
         return id != null && id.equals(article.id); //All non-persistent entities are viewed as different values.
     }
 
