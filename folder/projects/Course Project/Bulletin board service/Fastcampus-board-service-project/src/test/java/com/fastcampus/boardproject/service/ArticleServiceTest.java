@@ -21,11 +21,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
+
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
-@DisplayName("비즈니스 로직 - 게시글")
+@DisplayName("Business logic - Articles")
 @ExtendWith(MockitoExtension.class)
 class ArticleServiceTest {
 
@@ -33,7 +34,7 @@ class ArticleServiceTest {
 
     @Mock private ArticleRepository articleRepository;
 
-    @DisplayName("검색어 없이 게시글을 검색하면, 게시글 페이지를 반환한다.")
+    @DisplayName("If you search for a post without a search term, it returns the post page.")
     @Test
     void givenNoSearchParameters_whenSearchingArticles_thenReturnsArticlePage() {
         // Given
@@ -48,24 +49,24 @@ class ArticleServiceTest {
         then(articleRepository).should().findAll(pageable);
     }
 
-    @DisplayName("검색어와 함께 게시글을 검색하면, 게시글 페이지를 반환한다.")
+    @DisplayName("When you search for a post with a search term, it returns the post page.")
     @Test
     void givenSearchParameters_whenSearchingArticles_thenReturnsArticlePage() {
         // Given
         SearchType searchType = SearchType.TITLE;
         String searchKeyword = "title";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByTitle(searchKeyword, pageable)).willReturn(Page.empty());
+        given(articleRepository.findByTitleContaining(searchKeyword, pageable)).willReturn(Page.empty());
 
         // When
         Page<ArticleDto> articles = sut.searchArticles(searchType, searchKeyword, pageable);
 
         // Then
         assertThat(articles).isEmpty();
-        then(articleRepository).should().findByTitle(searchKeyword, pageable);
+        then(articleRepository).should().findByTitleContaining(searchKeyword, pageable);
     }
 
-    @DisplayName("게시글을 조회하면, 게시글을 반환한다.")
+    @DisplayName("When a post is retrieved, it returns the post.")
     @Test
     void givenArticleId_whenSearchingArticle_thenReturnsArticle() {
         // Given
@@ -84,7 +85,7 @@ class ArticleServiceTest {
         then(articleRepository).should().findById(articleId);
     }
 
-    @DisplayName("없는 게시글을 조회하면, 예외를 던진다.")
+    @DisplayName("If it retrieves a post that doesn't exist, it throws an exception.")
     @Test
     void givenNonexistentArticleId_whenSearchingArticle_thenThrowsException() {
         // Given
@@ -97,11 +98,11 @@ class ArticleServiceTest {
         // Then
         assertThat(t)
                 .isInstanceOf(EntityNotFoundException.class)
-                .hasMessage("게시글이 없습니다 - articleId: " + articleId);
+                .hasMessage("No posts - articleId: " + articleId);
         then(articleRepository).should().findById(articleId);
     }
 
-    @DisplayName("게시글 정보를 입력하면, 게시글을 생성한다.")
+    @DisplayName("After you enter the post information, create the post.")
     @Test
     void givenArticleInfo_whenSavingArticle_thenSavesArticle() {
         // Given
@@ -115,12 +116,12 @@ class ArticleServiceTest {
         then(articleRepository).should().save(any(Article.class));
     }
 
-    @DisplayName("게시글의 수정 정보를 입력하면, 게시글을 수정한다.")
+    @DisplayName("When you enter the edit information for the post, edit the post.")
     @Test
     void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
         // Given
         Article article = createArticle();
-        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
+        ArticleDto dto = createArticleDto("new title", "new content", "#springboot");
         given(articleRepository.getReferenceById(dto.id())).willReturn(article);
 
         // When
@@ -134,11 +135,11 @@ class ArticleServiceTest {
         then(articleRepository).should().getReferenceById(dto.id());
     }
 
-    @DisplayName("없는 게시글의 수정 정보를 입력하면, 경고 로그를 찍고 아무 것도 하지 않는다.")
+    @DisplayName("If you enter edit information for a post that doesn't exist, it will log a warning and do nothing.")
     @Test
     void givenNonexistentArticleInfo_whenUpdatingArticle_thenLogsWarningAndDoesNothing() {
         // Given
-        ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
+        ArticleDto dto = createArticleDto("new title", "new content", "#springboot");
         given(articleRepository.getReferenceById(dto.id())).willThrow(EntityNotFoundException.class);
 
         // When
@@ -148,7 +149,7 @@ class ArticleServiceTest {
         then(articleRepository).should().getReferenceById(dto.id());
     }
 
-    @DisplayName("게시글의 ID를 입력하면, 게시글을 삭제한다")
+    @DisplayName("Enter the post's ID to delete the post")
     @Test
     void givenArticleId_whenDeletingArticle_thenDeletesArticle() {
         // Given
@@ -165,10 +166,10 @@ class ArticleServiceTest {
 
     private UserAccount createUserAccount() {
         return UserAccount.of(
-                "uno",
+                "jin",
                 "password",
-                "uno@email.com",
-                "Uno",
+                "jin@email.com",
+                "Jin",
                 null
         );
     }
@@ -193,24 +194,23 @@ class ArticleServiceTest {
                 content,
                 hashtag,
                 LocalDateTime.now(),
-                "Uno",
+                "Jin",
                 LocalDateTime.now(),
-                "Uno");
+                "Jin");
     }
 
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
                 1L,
-                "uno",
+                "jin",
                 "password",
-                "uno@mail.com",
-                "Uno",
+                "jin@mail.com",
+                "Jin",
                 "This is memo",
                 LocalDateTime.now(),
-                "uno",
+                "jin",
                 LocalDateTime.now(),
-                "uno"
+                "jin"
         );
     }
-
 }

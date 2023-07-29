@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
-@DisplayName("비즈니스 로직 - 댓글")
+@DisplayName("Business Logic - Comments")
 @ExtendWith(MockitoExtension.class)
 class ArticleCommentServiceTest {
 
@@ -31,7 +31,7 @@ class ArticleCommentServiceTest {
     @Mock private ArticleRepository articleRepository;
     @Mock private ArticleCommentRepository articleCommentRepository;
 
-    @DisplayName("게시글 ID로 조회하면, 해당하는 댓글 리스트를 반환한다.")
+    @DisplayName("When queried by post ID, returns a list of corresponding comments.")
     @Test
     void givenArticleId_whenSearchingArticleComments_thenReturnsArticleComments() {
         // Given
@@ -49,11 +49,11 @@ class ArticleCommentServiceTest {
         then(articleCommentRepository).should().findByArticle_Id(articleId);
     }
 
-    @DisplayName("댓글 정보를 입력하면, 댓글을 저장한다.")
+    @DisplayName("After entering the comment information, save the comment.")
     @Test
     void givenArticleCommentInfo_whenSavingArticleComment_thenSavesArticleComment() {
         // Given
-        ArticleCommentDto dto = createArticleCommentDto("댓글");
+        ArticleCommentDto dto = createArticleCommentDto("Comments");
         given(articleRepository.getReferenceById(dto.articleId())).willReturn(createArticle());
         given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
 
@@ -65,11 +65,11 @@ class ArticleCommentServiceTest {
         then(articleCommentRepository).should().save(any(ArticleComment.class));
     }
 
-    @DisplayName("댓글 저장을 시도했는데 맞는 게시글이 없으면, 경고 로그를 찍고 아무것도 안 한다.")
+    @DisplayName("If you try to save a comment and there is no matching post, it will log a warning and do nothing.")
     @Test
     void givenNonexistentArticle_whenSavingArticleComment_thenLogsSituationAndDoesNothing() {
         // Given
-        ArticleCommentDto dto = createArticleCommentDto("댓글");
+        ArticleCommentDto dto = createArticleCommentDto("comment");
         given(articleRepository.getReferenceById(dto.articleId())).willThrow(EntityNotFoundException.class);
 
         // When
@@ -80,12 +80,12 @@ class ArticleCommentServiceTest {
         then(articleCommentRepository).shouldHaveNoInteractions();
     }
 
-    @DisplayName("댓글 정보를 입력하면, 댓글을 수정한다.")
+    @DisplayName("After entering the comment information, edit the comment.")
     @Test
     void givenArticleCommentInfo_whenUpdatingArticleComment_thenUpdatesArticleComment() {
         // Given
         String oldContent = "content";
-        String updatedContent = "댓글";
+        String updatedContent = "Comments";
         ArticleComment articleComment = createArticleComment(oldContent);
         ArticleCommentDto dto = createArticleCommentDto(updatedContent);
         given(articleCommentRepository.getReferenceById(dto.id())).willReturn(articleComment);
@@ -100,11 +100,11 @@ class ArticleCommentServiceTest {
         then(articleCommentRepository).should().getReferenceById(dto.id());
     }
 
-    @DisplayName("없는 댓글 정보를 수정하려고 하면, 경고 로그를 찍고 아무 것도 안 한다.")
+    @DisplayName("If you try to modify the missing comment information, it will log a warning and do nothing.")
     @Test
     void givenNonexistentArticleComment_whenUpdatingArticleComment_thenLogsWarningAndDoesNothing() {
         // Given
-        ArticleCommentDto dto = createArticleCommentDto("댓글");
+        ArticleCommentDto dto = createArticleCommentDto("comment");
         given(articleCommentRepository.getReferenceById(dto.id())).willThrow(EntityNotFoundException.class);
 
         // When
@@ -114,7 +114,7 @@ class ArticleCommentServiceTest {
         then(articleCommentRepository).should().getReferenceById(dto.id());
     }
 
-    @DisplayName("댓글 ID를 입력하면, 댓글을 삭제한다.")
+    @DisplayName("Enter the comment ID to delete the comment.")
     @Test
     void givenArticleCommentId_whenDeletingArticleComment_thenDeletesArticleComment() {
         // Given
@@ -136,9 +136,9 @@ class ArticleCommentServiceTest {
                 createUserAccountDto(),
                 content,
                 LocalDateTime.now(),
-                "uno",
+                "jin",
                 LocalDateTime.now(),
-                "uno"
+                "jin"
         );
     }
 
@@ -148,12 +148,12 @@ class ArticleCommentServiceTest {
                 "uno",
                 "password",
                 "uno@mail.com",
-                "Uno",
+                "Jin",
                 "This is memo",
                 LocalDateTime.now(),
-                "uno",
+                "jin",
                 LocalDateTime.now(),
-                "uno"
+                "jin"
         );
     }
 
@@ -167,10 +167,10 @@ class ArticleCommentServiceTest {
 
     private UserAccount createUserAccount() {
         return UserAccount.of(
-                "uno",
+                "jin",
                 "password",
-                "uno@email.com",
-                "Uno",
+                "jin@email.com",
+                "Jin",
                 null
         );
     }
@@ -183,5 +183,4 @@ class ArticleCommentServiceTest {
                 "#java"
         );
     }
-
 }
