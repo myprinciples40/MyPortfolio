@@ -13,7 +13,7 @@
  * Major: Bachelor of Information Technology
  * Expected graduation date: 2024-01-26
  * A study plan to improve my skills as a backend developer in the seven months leading up to graduation
- * #Java, #Spring Boot, #Node.js, #SQL, #DevOps, #AWS, #Docker, #Bash, #Agile, #Scrum
+ * #Java, #Spring Boot, #Node.js, #SQL, #DevOps, #AWS, #Docker, #Bash
 
 
 ## Future contents
