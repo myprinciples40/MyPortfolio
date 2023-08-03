@@ -1,0 +1,5 @@
+/* Post table title */
+#article-table > thead a {
+    text-decoration: none;
+    color: black;
+}
