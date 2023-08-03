@@ -23,6 +23,7 @@
                 sort='createdAt' + (*{sort.getOrderFor('createdAt')} != null ? (*{sort.getOrderFor('createdAt').direction.name} != 'DESC' ? ',desc' : '') : '')
             )}"/>
             </attr>
+            
             <attr sel="tbody" th:remove="all-but-first">
                 <attr sel="tr[0]" th:each="article : ${articles}">
                     <attr sel="td.title/a" th:text="${article.title}" th:href="@{'/articles/' + ${article.id}}" />
