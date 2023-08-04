@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,6 +65,36 @@ class ArticleServiceTest {
         // Then
         assertThat(articles).isEmpty();
         then(articleRepository).should().findByTitleContaining(searchKeyword, pageable);
+    }
+
+    @DisplayName("A hashtag search for posts without a search term will return a blank page.")
+    @Test
+    void givenNoSearchParameters_whenSearchingArticlesViaHashtag_thenReturnsEmptyPage() {
+        // Given
+        Pageable pageable = Pageable.ofSize(20);
+
+        // When
+        Page<ArticleDto> articles = sut.searchArticlesViaHashtag(null, pageable);
+
+        // Then
+        assertThat(articles).isEqualTo(Page.empty(pageable));
+        then(articleRepository).shouldHaveNoInteractions();
+    }
+
+    @DisplayName("If I search for a post by hashtag, it will return the post page.")
+    @Test
+    void givenHashtag_whenSearchingArticlesViaHashtag_thenReturnsArticlesPage() {
+        // Given
+        String hashtag = "#java";
+        Pageable pageable = Pageable.ofSize(20);
+        given(articleRepository.findByHashtag(hashtag, pageable)).willReturn(Page.empty(pageable));
+
+        // When
+        Page<ArticleDto> articles = sut.searchArticlesViaHashtag(hashtag, pageable);
+
+        // Then
+        assertThat(articles).isEqualTo(Page.empty(pageable));
+        then(articleRepository).should().findByHashtag(hashtag, pageable);
     }
 
     @DisplayName("When a post is retrieved, it returns the post.")
@@ -163,6 +194,20 @@ class ArticleServiceTest {
         then(articleRepository).should().deleteById(articleId);
     }
 
+    @DisplayName("When you look up a hashtag, it returns a list of unique hashtags.")
+    @Test
+    void givenNothing_whenCalling_thenReturnsHashtags() {
+        // Given
+        List<String> expectedHashtags = List.of("#java", "#spring", "#boot");
+        given(articleRepository.findAllDistinctHashtags()).willReturn(expectedHashtags);
+
+        // When
+        List<String> actualHashtags = sut.getHashtags();
+
+        // Then
+        assertThat(actualHashtags).isEqualTo(expectedHashtags);
+        then(articleRepository).should().findAllDistinctHashtags();
+    }
 
     private UserAccount createUserAccount() {
         return UserAccount.of(
