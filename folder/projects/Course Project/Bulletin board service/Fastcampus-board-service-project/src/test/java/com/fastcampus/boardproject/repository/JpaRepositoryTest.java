@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
+import static com.fastcampus.boardproject.domain.UserAccount.*;
 import static org.assertj.core.api.Assertions.*;
 
 //@ActiveProfiles("testdb")
@@ -49,7 +50,7 @@ class JpaRepositoryTest {
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
         long previousCount = articleRepository.count();
-        UserAccount userAccount = userAccountRepository.save(UserAccount.of("Jin", "pw", null, null, null));
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("newJin", "pw", null, null, null));
         Article article = Article.of(userAccount, "new article", "new content", "#spring");
 
         // When
