@@ -61,8 +61,8 @@ public class Article extends AuditingFields {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Article article)) return false; //Java 14 pattern matching from jdk 17
-        article = (Article) o;
-        return id != null && id.equals(article.id); //All non-persistent entities are viewed as different values.
+//        article = (Article) o;
+        return id != null && id.equals(article.getId()); //All non-persistent entities are viewed as different values.
     }
 
     @Override
