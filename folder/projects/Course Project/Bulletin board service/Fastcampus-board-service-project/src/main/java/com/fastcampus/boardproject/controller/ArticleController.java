@@ -83,7 +83,7 @@ public class ArticleController {
     public String postNewArticle(ArticleRequest articleRequest) {
         // TODO: I have to enter the credentials.
         articleService.saveArticle(articleRequest.toDto(UserAccountDto.of(
-                "jin", "asdf1234", "jin@mail.com", "Jin", "jinvamos", null, null, null, null
+                "jin", "asdf1234", "jin@mail.com", "Jin", "jinvamos"
         )));
 
         return "redirect:/articles";
