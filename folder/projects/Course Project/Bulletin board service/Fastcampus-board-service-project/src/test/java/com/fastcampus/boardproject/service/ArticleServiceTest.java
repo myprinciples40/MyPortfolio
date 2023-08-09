@@ -192,13 +192,13 @@ class ArticleServiceTest {
         // Given
         Long articleId = 1L;
         String userId = "jin";
-        willDoNothing().given(articleRepository).deleteByIdandUserAccount_UserId(articleId, userId);
+        willDoNothing().given(articleRepository).deleteByIdAndUserAccount_UserId(articleId, userId);
 
         // When
         sut.deleteArticle(1L, userId);
 
         // Then
-        then(articleRepository).should().deleteByIdandUserAccount_UserId(articleId, userId);
+        then(articleRepository).should().deleteByIdAndUserAccount_UserId(articleId, userId);
     }
 
     @DisplayName("When you look up a hashtag, it returns a list of unique hashtags.")

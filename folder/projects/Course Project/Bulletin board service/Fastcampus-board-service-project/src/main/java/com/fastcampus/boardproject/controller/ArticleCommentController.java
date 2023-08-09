@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
-
 @RequiredArgsConstructor
 @RequestMapping("/comments")
 @Controller
 public class ArticleCommentController {
+
     private final ArticleCommentService articleCommentService;
 
     @PostMapping ("/new")
