@@ -2,10 +2,10 @@
 -- TODO: Data setting for testing but password exposed. Improvement.
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at,
                           modified_by)
-values ('ellie', 'asdf1234', 'Ellie', 'ellie@mail.com', 'I am ellie.', now(), 'ellie', now(), 'ellie');
+values ('ellie', '{noop}asdf1234', 'Ellie', 'ellie@mail.com', 'I am ellie.', now(), 'ellie', now(), 'ellie');
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at,
                           modified_by)
-values ('narin', 'narin7777', 'Narin', 'Narin@mail.com', 'I am Narin.', now(), 'narin', now(), 'narin');
+values ('narin', '{noop}narin7777', 'Narin', 'Narin@mail.com', 'I am Narin.', now(), 'narin', now(), 'narin');
 
 -- 123 Post
 insert into article (user_id, title, content, hashtag, created_by, modified_by, created_at, modified_at)
