@@ -6,6 +6,7 @@ import com.fastcampus.boardproject.dto.UserAccountDto;
 import com.fastcampus.boardproject.dto.request.ArticleRequest;
 import com.fastcampus.boardproject.dto.response.ArticleResponse;
 import com.fastcampus.boardproject.dto.response.ArticleWithCommentsResponse;
+import com.fastcampus.boardproject.dto.security.BoardPrincipal;
 import com.fastcampus.boardproject.service.ArticleService;
 import com.fastcampus.boardproject.service.PaginationService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -80,11 +84,11 @@ public class ArticleController {
     }
 
     @PostMapping ("/form")
-    public String postNewArticle(ArticleRequest articleRequest) {
-        // TODO: I have to enter the credentials.
-        articleService.saveArticle(articleRequest.toDto(UserAccountDto.of(
-                "jin", "asdf1234", "jin@mail.com", "Jin", "jinvamos"
-        )));
+    public String postNewArticle(
+            @AuthenticationPrincipal BoardPrincipal boardPrincipal,
+            ArticleRequest articleRequest
+    ) {
+        articleService.saveArticle(articleRequest.toDto(boardPrincipal.toDto()));
 
         return "redirect:/articles";
     }
@@ -100,19 +104,24 @@ public class ArticleController {
     }
 
     @PostMapping("/{articleId}/form")
-    public String updateArticle(@PathVariable Long articleId, ArticleRequest articleRequest) {
-        // TODO: I have to enter the credentials.
-        articleService.updateArticle(articleId, articleRequest.toDto(UserAccountDto.of(
-                "jin", "asdf1234", "jin@mail.com", "Jin", "jinvamos"
-        )));
+    public String updateArticle(
+            @PathVariable Long articleId,
+            @AuthenticationPrincipal BoardPrincipal boardPrincipal,
+            ArticleRequest articleRequest
+    ) {
+        articleService.updateArticle(articleId, articleRequest.toDto(boardPrincipal.toDto()));
 
         return "redirect:/articles/" + articleId;
     }
 
     @PostMapping ("/{articleId}/delete")
-    public String deleteArticle(@PathVariable Long articleId) {
-        // TODO: I have to enter the credentials.
-        articleService.deleteArticle(articleId);
+    public String deleteArticle(
+            @PathVariable Long articleId,
+            @AuthenticationPrincipal BoardPrincipal boardPrincipal
+    ) {
+        // Code to retrieve credentials from anywhere
+//        SecurityContextHolder.getContext().getAuthentication();
+        articleService.deleteArticle(articleId, boardPrincipal.getUsername());
 
         return "redirect:/articles";
     }

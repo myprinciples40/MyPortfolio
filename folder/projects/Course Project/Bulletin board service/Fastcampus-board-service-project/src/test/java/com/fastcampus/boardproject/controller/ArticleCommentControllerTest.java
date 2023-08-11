@@ -1,6 +1,7 @@
 package com.fastcampus.boardproject.controller;
 
 import com.fastcampus.boardproject.config.SecurityConfig;
+import com.fastcampus.boardproject.config.TestSecurityConfig;
 import com.fastcampus.boardproject.dto.ArticleCommentDto;
 import com.fastcampus.boardproject.dto.request.ArticleCommentRequest;
 import com.fastcampus.boardproject.service.ArticleCommentService;
@@ -24,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View Controller - Comment")
-@Import({SecurityConfig.class, FormDataEncoder.class})
+@Import({TestSecurityConfig.class, FormDataEncoder.class})
 @WebMvcTest(ArticleCommentController.class)
 class ArticleCommentControllerTest {
     private final MockMvc mvc;
@@ -69,7 +70,8 @@ class ArticleCommentControllerTest {
         // Given
         long articleId = 1L;
         long articleCommentId = 1L;
-        willDoNothing().given(articleCommentService).deleteArticleComment(articleCommentId);
+        String userId = "jinTest";
+        willDoNothing().given(articleCommentService).deleteArticleComment(articleCommentId, userId);
 
         // When & Then
         mvc.perform(
@@ -81,6 +83,6 @@ class ArticleCommentControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/articles/" + articleId))
                 .andExpect(redirectedUrl("/articles/" + articleId));
-        then(articleCommentService).should().deleteArticleComment(articleCommentId);
+        then(articleCommentService).should().deleteArticleComment(articleCommentId, userId);
     }
 }
