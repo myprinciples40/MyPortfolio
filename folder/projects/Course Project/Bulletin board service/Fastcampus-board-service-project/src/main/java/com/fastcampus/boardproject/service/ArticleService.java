@@ -52,7 +52,7 @@ public class ArticleService {
     public ArticleDto getArticle(Long articleId) {
         return articleRepository.findById(articleId)
                 .map(ArticleDto::from)
-                .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다 - articleId: " + articleId));
+                .orElseThrow(() -> new EntityNotFoundException("No posts - articleId: " + articleId));
     }
 
     public void saveArticle(ArticleDto dto) {
