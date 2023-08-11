@@ -19,7 +19,7 @@ public class ArticleCommentController {
     private final ArticleCommentService articleCommentService;
 
     @PostMapping ("/new")
-    public String postNewArticle(
+    public String postNewArticleComment(
             @AuthenticationPrincipal BoardPrincipal boardPrincipal,
             ArticleCommentRequest articleCommentRequest
     ){
