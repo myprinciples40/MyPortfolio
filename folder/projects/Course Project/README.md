@@ -10,10 +10,4 @@
   *  
   * 
     
-
-## How
-  * Problem identification -> Requirements -> Feature derivation -> Planning of implementation plan 
-    -> Development plan -> Execution
-
-## Why
-  * To utilise and practice the skills I've learned
+You can find more details by opening each project folder.
