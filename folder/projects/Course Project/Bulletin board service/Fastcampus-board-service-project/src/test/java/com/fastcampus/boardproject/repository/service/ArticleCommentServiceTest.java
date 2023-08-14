@@ -1,4 +1,4 @@
-package com.fastcampus.boardproject.service;
+package com.fastcampus.boardproject.repository.service;
 
 import com.fastcampus.boardproject.domain.Article;
 import com.fastcampus.boardproject.domain.ArticleComment;
@@ -8,6 +8,7 @@ import com.fastcampus.boardproject.dto.UserAccountDto;
 import com.fastcampus.boardproject.repository.ArticleCommentRepository;
 import com.fastcampus.boardproject.repository.ArticleRepository;
 import com.fastcampus.boardproject.repository.UserAccountRepository;
+import com.fastcampus.boardproject.service.ArticleCommentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -131,7 +132,7 @@ class ArticleCommentServiceTest {
         sut.deleteArticleComment(articleCommentId, userId);
 
         // Then
-        then(articleCommentRepository).should().deleteById(articleCommentId);
+        then(articleCommentRepository).should().deleteByIdAndUserAccount_UserId(articleCommentId, userId);
     }
 
 

@@ -1,5 +1,6 @@
-package com.fastcampus.boardproject.service;
+package com.fastcampus.boardproject.repository.service;
 
+import com.fastcampus.boardproject.service.PaginationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

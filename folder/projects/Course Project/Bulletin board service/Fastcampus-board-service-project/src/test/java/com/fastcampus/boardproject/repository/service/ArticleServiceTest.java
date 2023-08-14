@@ -1,4 +1,4 @@
-package com.fastcampus.boardproject.service;
+package com.fastcampus.boardproject.repository.service;
 
 import com.fastcampus.boardproject.domain.Article;
 import com.fastcampus.boardproject.domain.UserAccount;
@@ -8,6 +8,7 @@ import com.fastcampus.boardproject.dto.ArticleWithCommentsDto;
 import com.fastcampus.boardproject.dto.UserAccountDto;
 import com.fastcampus.boardproject.repository.ArticleRepository;
 import com.fastcampus.boardproject.repository.UserAccountRepository;
+import com.fastcampus.boardproject.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
