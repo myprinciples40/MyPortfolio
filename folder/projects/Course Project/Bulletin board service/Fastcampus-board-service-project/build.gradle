@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.fastcampus'
-version = '0.0.1-SNAPSHOT'
+version = 'v1.1'
 
 java {
 	sourceCompatibility = "17"
@@ -73,4 +73,11 @@ sourceSets {
 // Delete the QClass directory on gradle clean
 clean {
 	delete file(generated)
+}
+
+// Heroku Setting
+jar {
+	mainfest {
+		attributes('Main-Class': 'com.fastcampus.boardproject.FastcampusBoardServiceProjectApplication')
+	}
 }
