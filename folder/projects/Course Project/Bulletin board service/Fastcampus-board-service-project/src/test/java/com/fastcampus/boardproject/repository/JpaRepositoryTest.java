@@ -1,6 +1,5 @@
 package com.fastcampus.boardproject.repository;
 
-import com.fastcampus.boardproject.config.JpaConfig;
 import com.fastcampus.boardproject.domain.Article;
 import com.fastcampus.boardproject.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +15,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import java.util.List;
 import java.util.Optional;
 
-import static com.fastcampus.boardproject.domain.UserAccount.*;
 import static org.assertj.core.api.Assertions.*;
 
 //@ActiveProfiles("testdb")
@@ -30,7 +28,7 @@ class JpaRepositoryTest {
     private final ArticleCommentRepository articleCommentRepository;
     private final UserAccountRepository userAccountRepository;
 
-    public JpaRepositoryTest(@Autowired ArticleRepository articleRepository,
+    JpaRepositoryTest(@Autowired ArticleRepository articleRepository,
                              @Autowired ArticleCommentRepository articleCommentRepository,
                              @Autowired UserAccountRepository userAccountRepository) {
         this.articleRepository = articleRepository;
@@ -101,11 +99,10 @@ class JpaRepositoryTest {
     // Code to replace the contents of the JpaConfig class
     @EnableJpaAuditing
     @TestConfiguration
-    public static class TestJpaConfig {
+    static class TestJpaConfig {
         @Bean
-        public AuditorAware<String> auditorAware() {
+        AuditorAware<String> auditorAware() {
             return () -> Optional.of("jin");
         }
     }
-
 }

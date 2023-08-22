@@ -2,7 +2,6 @@ package com.fastcampus.boardproject.config;
 
 import com.fastcampus.boardproject.domain.UserAccount;
 import com.fastcampus.boardproject.repository.UserAccountRepository;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;
