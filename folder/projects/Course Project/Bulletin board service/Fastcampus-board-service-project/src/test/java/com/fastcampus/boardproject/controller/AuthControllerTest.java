@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestComponent;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
@@ -19,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("View Controller - Authentication")
 @Import(TestSecurityConfig.class)
-@WebMvcTest(Void.class)
+@WebMvcTest(AuthControllerTest.EmptyController.class)
 class AuthControllerTest {
     private final MockMvc mvc;
 
@@ -42,5 +43,12 @@ class AuthControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
         then(articleService).shouldHaveNoInteractions();
         then(paginationService).shouldHaveNoInteractions();
+    }
+
+    /**
+     * Using an empty component for the test to indicate that the test does not require any controllers.
+     */
+    @TestComponent
+    public class EmptyController {
     }
 }
