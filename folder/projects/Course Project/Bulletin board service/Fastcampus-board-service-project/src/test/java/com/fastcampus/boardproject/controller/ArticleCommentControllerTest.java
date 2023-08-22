@@ -1,6 +1,5 @@
 package com.fastcampus.boardproject.controller;
 
-import com.fastcampus.boardproject.config.SecurityConfig;
 import com.fastcampus.boardproject.config.TestSecurityConfig;
 import com.fastcampus.boardproject.dto.ArticleCommentDto;
 import com.fastcampus.boardproject.dto.request.ArticleCommentRequest;

@@ -1,6 +1,5 @@
 package com.fastcampus.boardproject.controller;
 
-import com.fastcampus.boardproject.dto.UserAccountDto;
 import com.fastcampus.boardproject.dto.request.ArticleCommentRequest;
 import com.fastcampus.boardproject.dto.security.BoardPrincipal;
 import com.fastcampus.boardproject.service.ArticleCommentService;
@@ -18,7 +17,7 @@ public class ArticleCommentController {
 
     private final ArticleCommentService articleCommentService;
 
-    @PostMapping ("/new")
+    @PostMapping("/new")
     public String postNewArticleComment(
             @AuthenticationPrincipal BoardPrincipal boardPrincipal,
             ArticleCommentRequest articleCommentRequest
@@ -28,7 +27,7 @@ public class ArticleCommentController {
         return "redirect:/articles/" + articleCommentRequest.articleId();
     }
 
-    @PostMapping ("/{commentId}/delete")
+    @PostMapping("/{commentId}/delete")
     public String deleteArticleComment(
             @PathVariable Long commentId,
             @AuthenticationPrincipal BoardPrincipal boardPrincipal,

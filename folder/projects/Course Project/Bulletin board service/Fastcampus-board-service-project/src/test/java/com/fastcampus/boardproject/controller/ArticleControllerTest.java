@@ -1,6 +1,5 @@
 package com.fastcampus.boardproject.controller;
 
-import com.fastcampus.boardproject.config.SecurityConfig;
 import com.fastcampus.boardproject.config.TestSecurityConfig;
 import com.fastcampus.boardproject.domain.constant.FormStatus;
 import com.fastcampus.boardproject.domain.constant.SearchType;
@@ -61,7 +60,7 @@ class ArticleControllerTest {
 
     @DisplayName("[view][GET] Post List (Bulletin Board) Page - Normal Invocation")
     @Test
-    public void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception {
+    void givenNothing_whenRequestingArticlesView_thenReturnsArticlesView() throws Exception {
         // Given
         given(articleService.searchArticles(eq(null), eq(null), any(Pageable.class))).willReturn(Page.empty());
         given(paginationService.getPaginationBarNumbers(anyInt(), anyInt())).willReturn(List.of(0, 1, 2, 3, 4));
@@ -80,7 +79,7 @@ class ArticleControllerTest {
 
     @DisplayName("[view][GET] Post List (Bulletin Board) Page - Invocation with Search Keyword")
     @Test
-    public void givenSearchKeyword_whenSearchingArticlesView_thenReturnsArticlesView() throws Exception {
+    void givenSearchKeyword_whenSearchingArticlesView_thenReturnsArticlesView() throws Exception {
         // Given
         SearchType searchType = SearchType.TITLE;
         String searchValue = "title";
@@ -117,10 +116,10 @@ class ArticleControllerTest {
 
         // When & Then
         mvc.perform(
-                        get("/articles")
-                                .queryParam("page", String.valueOf(pageNumber))
-                                .queryParam("size", String.valueOf(pageSize))
-                                .queryParam("sort", sortName + "," + direction)
+                get("/articles")
+                        .queryParam("page", String.valueOf(pageNumber))
+                        .queryParam("size", String.valueOf(pageSize))
+                        .queryParam("sort", sortName + "," + direction)
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
@@ -148,7 +147,7 @@ class ArticleControllerTest {
     @WithMockUser
     @DisplayName("[view][GET] Post Detail page - Normal Invocation, Authenticated users")
     @Test
-    public void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
+    void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
         // Given
         Long articleId = 1L;
         Long totalCount = 1L;
@@ -170,7 +169,7 @@ class ArticleControllerTest {
     @Disabled("Implementing")
     @DisplayName("[view][GET] Post search page - Normal Invocation")
     @Test
-    public void givenNothing_whenRequestingArticleSearchView_thenReturnsArticleSearchView() throws Exception {
+    void givenNothing_whenRequestingArticleSearchView_thenReturnsArticleSearchView() throws Exception {
         // Given
 
         // When & Then
@@ -182,7 +181,7 @@ class ArticleControllerTest {
 
     @DisplayName("[view][GET] Post hashtag search page - Normal Invocation")
     @Test
-    public void givenNothing_whenRequestingArticleSearchHashtagView_thenReturnsArticleSearchHashtagView() throws Exception {
+    void givenNothing_whenRequestingArticleSearchHashtagView_thenReturnsArticleSearchHashtagView() throws Exception {
         // Given
         List<String> hashtags = List.of("#java", "#spring", "#springboot");
         given(articleService.searchArticlesViaHashtag(eq(null), any(Pageable.class))).willReturn(Page.empty());
@@ -205,7 +204,7 @@ class ArticleControllerTest {
 
     @DisplayName("[view][GET] Post hashtag search page - Normal Invocation, hashtag input")
     @Test
-    public void givenHashtag_whenRequestingArticleSearchHashtagView_thenReturnsArticleSearchHashtagView() throws Exception {
+    void givenHashtag_whenRequestingArticleSearchHashtagView_thenReturnsArticleSearchHashtagView() throws Exception {
         // Given
         String hashtag = "#java";
         List<String> hashtags = List.of("#java", "#spring", "#springboot");
@@ -232,7 +231,7 @@ class ArticleControllerTest {
     @WithMockUser
     @DisplayName("[view][GET] Create a new post page")
     @Test
-    void givenNothing_whenRequesting_thenReturnsNewArticlePage() throws Exception {
+    void givenAuthorizedUser_whenRequesting_thenReturnsNewArticlePage() throws Exception {
         // Given
 
         // When & Then
