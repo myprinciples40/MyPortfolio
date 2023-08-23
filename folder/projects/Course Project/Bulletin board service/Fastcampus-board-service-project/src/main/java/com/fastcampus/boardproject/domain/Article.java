@@ -65,11 +65,11 @@ public class Article extends AuditingFields {
         if (this == o) return true;
         if (!(o instanceof Article article)) return false; //Java 14 pattern matching from jdk 17
 //        article = (Article) o;
-        return id != null && id.equals(article.getId()); //All non-persistent entities are viewed as different values.
+        return this.getId() != null && this.getId().equals(article.getId()); //All non-persistent entities are viewed as different values.
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(this.getId());
     }
 }
