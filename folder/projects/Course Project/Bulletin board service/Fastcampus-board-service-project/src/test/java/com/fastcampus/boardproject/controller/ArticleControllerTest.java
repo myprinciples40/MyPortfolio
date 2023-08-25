@@ -5,6 +5,7 @@ import com.fastcampus.boardproject.domain.constant.FormStatus;
 import com.fastcampus.boardproject.domain.constant.SearchType;
 import com.fastcampus.boardproject.dto.ArticleDto;
 import com.fastcampus.boardproject.dto.ArticleWithCommentsDto;
+import com.fastcampus.boardproject.dto.HashtagDto;
 import com.fastcampus.boardproject.dto.UserAccountDto;
 import com.fastcampus.boardproject.dto.request.ArticleRequest;
 import com.fastcampus.boardproject.dto.response.ArticleResponse;
@@ -247,7 +248,7 @@ class ArticleControllerTest {
     @Test
     void givenNewArticleInfo_whenRequesting_thenSavesNewArticle() throws Exception {
         // Given
-        ArticleRequest articleRequest = ArticleRequest.of("new title", "new content", "#new");
+        ArticleRequest articleRequest = ArticleRequest.of("new title", "new content");
         willDoNothing().given(articleService).saveArticle(any(ArticleDto.class));
 
         // When & Then
@@ -301,7 +302,7 @@ class ArticleControllerTest {
     void givenUpdatedArticleInfo_whenRequesting_thenUpdatesNewArticle() throws Exception {
         // Given
         long articleId = 1L;
-        ArticleRequest articleRequest = ArticleRequest.of("new title", "new content", "#new");
+        ArticleRequest articleRequest = ArticleRequest.of("new title", "new content");
         willDoNothing().given(articleService).updateArticle(eq(articleId), any(ArticleDto.class));
 
         // When & Then
@@ -344,7 +345,7 @@ class ArticleControllerTest {
                 createUserAccountDto(),
                 "title",
                 "content",
-                "#java"
+                Set.of(HashtagDto.of("java"))
         );
     }
 
@@ -355,7 +356,7 @@ class ArticleControllerTest {
                 Set.of(),
                 "title",
                 "content",
-                "#java",
+                Set.of(HashtagDto.of("java")),
                 LocalDateTime.now(),
                 "jin",
                 LocalDateTime.now(),
