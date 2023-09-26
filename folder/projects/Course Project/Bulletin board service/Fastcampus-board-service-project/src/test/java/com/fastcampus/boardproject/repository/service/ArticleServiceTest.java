@@ -4,10 +4,7 @@ import com.fastcampus.boardproject.domain.Article;
 import com.fastcampus.boardproject.domain.Hashtag;
 import com.fastcampus.boardproject.domain.UserAccount;
 import com.fastcampus.boardproject.domain.constant.SearchType;
-import com.fastcampus.boardproject.dto.ArticleDto;
-import com.fastcampus.boardproject.dto.ArticleWithCommentsDto;
-import com.fastcampus.boardproject.dto.HashtagDto;
-import com.fastcampus.boardproject.dto.UserAccountDto;
+import com.fastcampus.boardproject.dto.*;
 import com.fastcampus.boardproject.repository.ArticleRepository;
 import com.fastcampus.boardproject.repository.HashtagRepository;
 import com.fastcampus.boardproject.repository.UserAccountRepository;
@@ -127,26 +124,26 @@ class ArticleServiceTest {
         Page<ArticleDto> articles = sut.searchArticlesViaHashtag(hashtagname, pageable);
 
         // Then
-        assertThat(articles).isEqualTo(new PageImpl<>(List.of(expectedArticle), pageable, 1));
+        assertThat(articles).isEqualTo(new PageImpl<>(List.of(ArticleDto.from(expectedArticle)), pageable, 1));
         then(articleRepository).should().findByHashtagNames(List.of(hashtagname), pageable);
     }
 
     @DisplayName("When a post is retrieved, it returns the post.")
     @Test
-    void givenArticleId_whenSearchingArticle_thenReturnsArticle() {
+    void givenArticleId_whenSearchingArticleWithComments_thenReturnsArticleWithComments() {
         // Given
         Long articleId = 1L;
         Article article = createArticle();
         given(articleRepository.findById(articleId)).willReturn(Optional.of(article));
 
         // When
-        ArticleDto dto = sut.getArticle(articleId);
+        ArticleWithCommentsDto dto = sut.getArticleWithComments(articleId);
 
         // Then
         assertThat(dto)
                 .hasFieldOrPropertyWithValue("title", article.getTitle())
                 .hasFieldOrPropertyWithValue("content", article.getContent())
-                .hasFieldOrPropertyWithValue("hashtag", article.getHashtags().stream()
+                .hasFieldOrPropertyWithValue("hashtagDtos", article.getHashtags().stream()
                         .map(HashtagDto::from)
                         .collect(Collectors.toUnmodifiableSet())
                 );
@@ -287,14 +284,14 @@ class ArticleServiceTest {
     void givenNothing_whenCalling_thenReturnsHashtags() {
         // Given
         List<String> expectedHashtags = List.of("java", "spring", "boot");
-        given(articleRepository.findAllDistinctHashtags()).willReturn(expectedHashtags);
+        given(hashtagRepository.findAllHashtagNames()).willReturn(expectedHashtags);
 
         // When
         List<String> actualHashtags = sut.getHashtags();
 
         // Then
         assertThat(actualHashtags).isEqualTo(expectedHashtags);
-        then(articleRepository).should().findAllDistinctHashtags();
+        then(hashtagRepository).should().findAllHashtagNames();
     }
 
     private UserAccount createUserAccount() {
